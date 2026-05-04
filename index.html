@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Валерия & Дмитрий | Приглашение на свадьбу</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- АНИМАЦИЯ ОТКРЫТИЯ КОНВЕРТА (полный экран) -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="envelope-fullscreen">
+      <!-- Кружевной узор -->
+      <div class="lace-border lace-top"></div>
+      <div class="lace-border lace-bottom"></div>
+      <div class="lace-border lace-left"></div>
+      <div class="lace-border lace-right"></div>
+      
+      <!-- Угловые кружевные элементы -->
+      <div class="lace-corner corner-tl"></div>
+      <div class="lace-corner corner-tr"></div>
+      <div class="lace-corner corner-bl"></div>
+      <div class="lace-corner corner-br"></div>
+
+      <!-- Конверт -->
+      <div class="envelope-main" id="envelopeMain">
+        <div class="envelope-front">
+          <div class="envelope-paper-texture"></div>
+          <div class="envelope-inner-lace-top"></div>
+          <div class="envelope-inner-lace-bottom"></div>
+          
+          <!-- Имена -->
+          <div class="envelope-names-wrapper">
+            <span class="envelope-ampersand">&</span>
+            <h1 class="envelope-name-left">Валерия</h1>
+            <h1 class="envelope-name-right">Дмитрий</h1>
+          </div>
+
+          <!-- Сургутная печать (кнопка) -->
+          <button class="seal-button" id="openInvitationBtn">
+            <div class="seal-wax">
+              <div class="seal-inner">
+                <span class="seal-monogram">В<span class="seal-amp">&</span>Д</span>
+              </div>
+            </div>
+            <span class="seal-hint">Открыть приглашение</span>
+          </button>
+        </div>
+
+        <!-- Крышка конверта (откидывается вверх) -->
+        <div class="envelope-flap" id="envelopeFlap">
+          <div class="flap-lace"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Нить и сердечко (скрыты до открытия) -->
+  <div class="heart-thread-container" id="heartThreadContainer">
+    <svg class="heart-thread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 2000" preserveAspectRatio="none">
+      <path class="thread-path" d="M100,0 C85,100 120,200 100,300 C80,400 115,500 100,600 C85,700 120,800 100,900 C80,1000 115,1100 100,1200 C85,1300 120,1400 100,1500 C80,1600 115,1700 100,1800 C85,1900 120,2000 100,2100" fill="none" stroke="url(#threadGradient)" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.5"/>
+      <defs>
+        <linearGradient id="threadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#E8C4B8; stop-opacity:0.08"/>
+          <stop offset="50%" style="stop-color:#D4A99A; stop-opacity:0.55"/>
+          <stop offset="100%" style="stop-color:#E8C4B8; stop-opacity:0.08"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="floating-heart" id="floatingHeart">
+      <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 29.5L14.535 27.278C5.78 19.475 0 14.738 0 8.5C0 3.806 3.806 0 8.5 0C11.186 0 13.747 1.201 15.5 3.091L17 4.614L18.5 3.091C20.253 1.201 22.814 0 25.5 0C30.194 0 34 3.806 34 8.5C34 14.738 28.22 19.475 19.465 27.278L17 29.5Z" fill="url(#heartGradient)"/>
+        <defs>
+          <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F9D2D2; stop-opacity:1"/>
+            <stop offset="40%" style="stop-color:#F0B0B0; stop-opacity:0.95"/>
+            <stop offset="100%" style="stop-color:#F9D2D2; stop-opacity:1"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="heart-glow"></span>
+      <span class="heart-sparkle heart-sparkle-1">✦</span>
+      <span class="heart-sparkle heart-sparkle-2">✧</span>
+      <span class="heart-sparkle heart-sparkle-3">✦</span>
+    </div>
+  </div>
+
+  <!-- Аудио плеер -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/wedding-music.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+  </audio>
+  <button class="music-toggle" id="musicToggle" title="Включить/выключить музыку">🔇</button>
+
+  <!-- Hero секция -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="hero-subtitle">Мы женимся!</span>
+        <h1 class="hero-title">Валерия <span class="ampersand">&</span> Дмитрий</h1>
+        <div class="hero-date">
+          <span>21 августа 2026 года</span>
+        </div>
+        <button class="btn btn-primary rsvp-trigger" data-target="rsvp">Подтвердить присутствие</button>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">⌵</div>
+  </section>
+
+  <!-- Приветствие -->
+  <section class="section fade-section" id="welcome">
+    <div class="container">
+      <div class="welcome-card">
+        <p class="welcome-text">
+          Дорогие наши гости,<br>
+          Мы бесконечно счастливы, что вы станете частью нашего самого важного дня. 
+          Сердце переполняется радостью, когда мы думаем о предстоящей встрече. 
+          Приглашаем вас разделить с нами магию любви, нежности и настоящего счастья.
+        </p>
+        <div class="signature">С любовью, Валерия и Дмитрий</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Дата и Место -->
+  <section class="section fade-section" id="location">
+    <div class="container">
+      <div class="section-header">
+        <h2>Дата и место</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="location-grid-vertical">
+        <!-- Дата с календарем -->
+        <div class="location-card-vertical">
+          <div class="calendar-wrapper">
+            <div class="calendar-frame">
+              <div class="calendar-month">Август 2026</div>
+              <div class="calendar-grid">
+                <div class="calendar-day-header">Пн</div><div class="calendar-day-header">Вт</div><div class="calendar-day-header">Ср</div><div class="calendar-day-header">Чт</div><div class="calendar-day-header">Пт</div><div class="calendar-day-header">Сб</div><div class="calendar-day-header">Вс</div>
+                <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
+                <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
+                <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
+                <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlighted-date">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
+                <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
+                <div class="calendar-day">31</div>
+              </div>
+              <div class="calendar-event-time">Сбор гостей 15:30 · Церемония 16:00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Место -->
+        <div class="location-card-vertical">
+          <div class="venue-photo-wrapper">
+            <img src="images/venue-photo.jpg" alt="Банкетный зал Муза" class="venue-photo" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #f5ebe0, #e8d5c4)'; this.parentNode.innerHTML += '<div class=\'venue-placeholder\'><span>🕍</span><p>Банкетный зал «Муза»</p></div>';">
+            <div class="venue-overlay-info">
+              <h3>Банкетный зал "Муза"</h3>
+              <p>Гороховский пер., 19, стр. 4, Москва</p>
+              <button class="btn btn-outline map-btn">Открыть карту</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Тайминг дня -->
+  <section class="section fade-section" id="timeline">
+    <div class="container">
+      <div class="section-header">
+        <h2>Программа дня</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="timeline-list">
+        <div class="timeline-item"><span class="time">15:30</span><span class="event">Встреча гостей & легкий фуршет</span></div>
+        <div class="timeline-item"><span class="time">16:00</span><span class="event">Торжественная церемония</span></div>
+        <div class="timeline-item"><span class="time">17:00</span><span class="event">Фотосессия & шампанское</span></div>
+        <div class="timeline-item"><span class="time">18:30</span><span class="event">Банкет и праздничный ужин</span></div>
+        <div class="timeline-item"><span class="time">20:30</span><span class="event">Сладкий стол & первый танец</span></div>
+        <div class="timeline-item"><span class="time">23:00</span><span class="event">Фейерверк & завершение вечера</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Дресс-код -->
+  <section class="section fade-section" id="dresscode">
+    <div class="container">
+      <div class="section-header">
+        <h2>Дресс-код</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="dresscode-content">
+        <p>Мы будем рады видеть вас в элегантных образах в нежной гамме. Вдохновение — сад цветущих пионов.</p>
+        <div class="color-palette">
+          <span class="color-dot" style="background: #F7E9E0;"></span>
+          <span class="color-dot" style="background: #D6E0D3;"></span>
+          <span class="color-dot" style="background: #F2D5C4;"></span>
+          <span class="color-dot" style="background: #E8D1B5;"></span>
+          <span class="color-dot" style="background: #B7CFC1;"></span>
+        </div>
+        
+        <!-- Карусель -->
+        <div class="outfit-carousel">
+          <div class="carousel-container" id="outfitCarousel">
+            <div class="carousel-slide active">
+              <div class="outfit-collage">
+                <div class="outfit-item"><img src="images/outfit-woman-1.jpg" alt="Женский образ" onerror="this.style.display='none'"></div>
+                <div class="outfit-item"><img src="images/outfit-man-1.jpg" alt="Мужской образ" onerror="this.style.display='none'"></div>
+              </div>
+              <p class="outfit-label">Нежная классика</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="outfit-collage">
+                <div class="outfit-item"><img src="images/outfit-woman-2.jpg" alt="Женский образ" onerror="this.style.display='none'"></div>
+                <div class="outfit-item"><img src="images/outfit-man-2.jpg" alt="Мужской образ" onerror="this.style.display='none'"></div>
+              </div>
+              <p class="outfit-label">Пастельная элегантность</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="outfit-collage">
+                <div class="outfit-item"><img src="images/outfit-woman-3.jpg" alt="Женский образ" onerror="this.style.display='none'"></div>
+                <div class="outfit-item"><img src="images/outfit-man-3.jpg" alt="Мужской образ" onerror="this.style.display='none'"></div>
+              </div>
+              <p class="outfit-label">Садовый шик</p>
+            </div>
+          </div>
+          <button class="carousel-btn carousel-prev" id="carouselPrev">‹</button>
+          <button class="carousel-btn carousel-next" id="carouselNext">›</button>
+          <div class="carousel-dots" id="carouselDots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+        <p class="dress-note">🌿 Просим воздержаться от ярких красных и чёрных оттенков. Элегантность и комфорт — главное правило.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Пожелания (обновленный фон — вертикальный прямоугольник с полной картинкой) -->
+  <section class="section fade-section" id="wishes">
+    <div class="container">
+      <div class="section-header">
+        <h2>Пожелания</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="wishes-vertical-card">
+        <div class="wishes-image-frame">
+          <img src="images/wishes-bg.jpg" alt="Фон пожеланий" class="wishes-full-image" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(180deg, #f9f0e8, #f0e2d5, #e8d5c4)';">
+          <div class="wishes-image-overlay"></div>
+          <div class="wishes-text-overlay">
+            <p>Ваше присутствие на нашей свадьбе — самый лучший подарок. Если вы всё же желаете нас порадовать, 
+            мы будем благодарны за конверты с тёплыми пожеланиями для нашего семейного бюджета. 
+            Или выберите что-то из нашего <span class="wishes-highlight">виш-листа</span> — спросите нас лично ✨</p>
+            <div class="wishes-emoji">💝 ☁️ 🌿</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP форма -->
+  <section class="section fade-section" id="rsvp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Пожалуйста, подтвердите присутствие</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="form-container rsvp-form-bg">
+        <form id="rsvpForm" novalidate>
+          <div class="form-group">
+            <label for="name">Ваше имя *</label>
+            <input type="text" id="name" name="name" placeholder="Например, Екатерина" required>
+            <div class="error-msg" id="nameError"></div>
+          </div>
+          <div class="form-group radio-group">
+            <label>Вы будете присутствовать? *</label>
+            <div class="radio-options">
+              <label class="radio-label"><input type="radio" name="attending" value="yes" required> Да, с радостью</label>
+              <label class="radio-label"><input type="radio" name="attending" value="no"> К сожалению, нет</label>
+            </div>
+            <div class="error-msg" id="attendingError"></div>
+          </div>
+          <div class="form-group">
+            <label for="guests">Количество гостей (включая вас) *</label>
+            <input type="number" id="guests" name="guests" min="1" max="6" value="1" required>
+            <div class="error-msg" id="guestsError"></div>
+          </div>
+          <div class="form-group">
+            <label for="comment">Комментарий или пожелание</label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, особые пожелания, тёплые слова..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Отправить ответ</button>
+        </form>
+        <div id="rsvpSuccess" class="rsvp-success hidden">
+          <span class="success-icon">✨</span>
+          <h3>Спасибо, дорогой гость!</h3>
+          <p>Ваш ответ успешно получен. Мы свяжемся с вами за пару дней до торжества ❤️</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>С нетерпением ждём встречи с вами ✨ 21.08.2026</p>
+      <p class="copyright">Свадебный день, наполненный любовью</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
