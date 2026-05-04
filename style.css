@@ -1039,13 +1039,11 @@ footer {
 }
 
 /* ===== АДАПТИВ ===== */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .hero-title { font-size: 2.6rem; }
   .ampersand { font-size: 2.8rem; }
   .section { padding: 3rem 1.2rem; }
   h2 { font-size: 1.9rem; }
-  .timeline-item { flex-direction: column; padding: 1rem; gap: 0.3rem; }
-  .time { width: auto; }
   .radio-options { flex-direction: column; gap: 0.8rem; }
   .form-container { padding: 1.5rem; }
   .outfit-collage { flex-direction: column; align-items: center; }
@@ -1054,13 +1052,40 @@ footer {
   .wishes-text-overlay { padding: 2rem 1.5rem; }
   .form-row { flex-direction: column; gap: 0; }
   .extra-guest-item { flex-direction: column; gap: 0.4rem; }
-}
-
-@media (max-width: 600px) {
+  
+  /* Открытка */
   .invitation-card { height: 320px; }
   .card-inside-title { font-size: 1.8rem; }
   .card-inside-subtitle { font-size: 0.65rem; letter-spacing: 4px; }
   .seal-wax { width: 54px; height: 54px; }
   .seal-inner { width: 40px; height: 40px; }
   .seal-monogram { font-size: 1rem; }
+
+  /* Тайминг — центрирование */
+  .timeline-list { padding: 0.3rem 0; }
+  .timeline-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 1.2rem;
+  }
+  .timeline-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0;
+    margin-bottom: 0.3rem;
+  }
+  .time {
+    width: auto;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+  }
+  .event { font-size: 0.9rem; }
+  .event-desc {
+    padding-left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+  }
 }
