@@ -952,6 +952,28 @@ input, textarea, select {
   transition: 0.2s;
 }
 
+select {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid #E3D9D0;
+  border-radius: 28px;
+  font-family: 'Inter', sans-serif;
+  background: #FEFCF9;
+  transition: 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%238C6F5E'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(164, 190, 157, 0.2);
+}
+
 input:focus, textarea:focus {
   outline: none;
   border-color: var(--sage);

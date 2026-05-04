@@ -207,12 +207,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (guestsInput) {
-    guestsInput.addEventListener('input', () => {
-      let val = parseInt(guestsInput.value, 10);
-      if (guestsInput.value === '') guestsInput.value = 1;
-      if (val < 1) guestsInput.value = 1;
-      if (val > 6) guestsInput.value = 6;
-      updateExtraGuests(guestsInput.value);
+  guestsInput.addEventListener('change', () => {
+    updateExtraGuests(guestsInput.value);
+  });
+  updateExtraGuests(guestsInput.value);
     });
     updateExtraGuests(guestsInput.value);
   }
