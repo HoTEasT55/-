@@ -25,7 +25,7 @@ body {
   scroll-behavior: smooth;
 }
 
-h1, h2, h3, .hero-title, .signature, .envelope-name-left, .envelope-name-right {
+h1, h2, h3, .hero-title, .signature, .envelope-invitation-title, .envelope-invitation-names {
   font-family: 'Playfair Display', serif;
   font-weight: 500;
 }
@@ -37,19 +37,9 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
-.section {
-  padding: 5rem 1.2rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
+.section { padding: 5rem 1.2rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 3rem; }
 
 .divider {
   width: 70px;
@@ -59,13 +49,13 @@ h2 {
   opacity: 0.5;
 }
 
-/* ========== КОНВЕРТ (ПОЛНЫЙ ЭКРАН) ========== */
+/* ===== КОНВЕРТ ===== */
 .envelope-overlay {
   position: fixed;
   inset: 0;
   z-index: 1000;
   background: #FDF9F5;
-  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.4s;
   visibility: visible;
   opacity: 1;
 }
@@ -96,96 +86,41 @@ h2 {
 }
 
 .lace-top {
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 80px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 14px,
-    #C4A99A 14px,
-    #C4A99A 16px,
-    transparent 16px,
-    transparent 28px,
-    #C4A99A 28px,
-    #C4A99A 30px
-  ),
-  radial-gradient(ellipse 8px 20px at 50% 0, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
+  top: 0; left: 10%; right: 10%; height: 80px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
+              radial-gradient(ellipse 8px 20px at 50% 0, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
   background-size: 42px 100%, 42px 100%;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.25), transparent);
 }
 
 .lace-bottom {
-  bottom: 0;
-  left: 10%;
-  right: 10%;
-  height: 80px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 14px,
-    #C4A99A 14px,
-    #C4A99A 16px,
-    transparent 16px,
-    transparent 28px,
-    #C4A99A 28px,
-    #C4A99A 30px
-  ),
-  radial-gradient(ellipse 8px 20px at 50% 100%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
+  bottom: 0; left: 10%; right: 10%; height: 80px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
+              radial-gradient(ellipse 8px 20px at 50% 100%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
   background-size: 42px 100%, 42px 100%;
   mask-image: linear-gradient(to top, rgba(0,0,0,0.25), transparent);
 }
 
 .lace-left {
-  left: 0;
-  top: 10%;
-  bottom: 10%;
-  width: 80px;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent,
-    transparent 14px,
-    #C4A99A 14px,
-    #C4A99A 16px,
-    transparent 16px,
-    transparent 28px,
-    #C4A99A 28px,
-    #C4A99A 30px
-  ),
-  radial-gradient(ellipse 20px 8px at 0 50%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
+  left: 0; top: 10%; bottom: 10%; width: 80px;
+  background: repeating-linear-gradient(180deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
+              radial-gradient(ellipse 20px 8px at 0 50%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
   background-size: 100% 42px, 100% 42px;
   mask-image: linear-gradient(to right, rgba(0,0,0,0.25), transparent);
 }
 
 .lace-right {
-  right: 0;
-  top: 10%;
-  bottom: 10%;
-  width: 80px;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent,
-    transparent 14px,
-    #C4A99A 14px,
-    #C4A99A 16px,
-    transparent 16px,
-    transparent 28px,
-    #C4A99A 28px,
-    #C4A99A 30px
-  ),
-  radial-gradient(ellipse 20px 8px at 100% 50%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
+  right: 0; top: 10%; bottom: 10%; width: 80px;
+  background: repeating-linear-gradient(180deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
+              radial-gradient(ellipse 20px 8px at 100% 50%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
   background-size: 100% 42px, 100% 42px;
   mask-image: linear-gradient(to left, rgba(0,0,0,0.25), transparent);
 }
 
-/* Угловые кружевные элементы */
 .lace-corner {
   position: absolute;
-  width: 120px;
-  height: 120px;
-  z-index: 1;
-  pointer-events: none;
+  width: 120px; height: 120px;
+  z-index: 1; pointer-events: none;
   opacity: 0.3;
 }
 
@@ -194,7 +129,6 @@ h2 {
 .corner-bl { bottom: 0; left: 0; background: radial-gradient(circle at 0 100%, #C4A99A 1px, transparent 1px); background-size: 12px 12px; }
 .corner-br { bottom: 0; right: 0; background: radial-gradient(circle at 100% 100%, #C4A99A 1px, transparent 1px); background-size: 12px 12px; }
 
-/* Основной конверт */
 .envelope-main {
   position: relative;
   z-index: 5;
@@ -203,13 +137,10 @@ h2 {
   animation: envelopeAppear 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-/* Крышка конверта */
 .envelope-flap {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 55%;
+  top: 0; left: 0;
+  width: 100%; height: 55%;
   background: linear-gradient(175deg, #F9F2EB 0%, #F0E5D8 40%, #E8D9C8 100%);
   z-index: 10;
   transform-origin: top center;
@@ -219,35 +150,20 @@ h2 {
   border-bottom: 1px solid rgba(180, 150, 130, 0.3);
 }
 
-.envelope-flap.opened {
-  transform: rotateX(-180deg);
-}
+.envelope-flap.opened { transform: rotateX(-180deg); }
 
 .flap-lace {
   position: absolute;
-  bottom: 8px;
-  left: 20%;
-  right: 20%;
+  bottom: 8px; left: 20%; right: 20%;
   height: 24px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 8px,
-    rgba(180, 150, 130, 0.35) 8px,
-    rgba(180, 150, 130, 0.35) 10px,
-    transparent 10px,
-    transparent 18px
-  );
+  background: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(180,150,130,0.35) 8px, rgba(180,150,130,0.35) 10px, transparent 10px, transparent 18px);
   border-radius: 0 0 12px 12px;
 }
 
-/* Передняя часть конверта */
 .envelope-front {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;
+  bottom: 0; left: 0;
+  width: 100%; height: 60%;
   background: linear-gradient(180deg, #FDF9F5 0%, #F8F2EB 100%);
   border-radius: 4px 4px 16px 16px;
   box-shadow: 0 25px 50px -15px rgba(0,0,0,0.08);
@@ -269,56 +185,52 @@ h2 {
 .envelope-inner-lace-top,
 .envelope-inner-lace-bottom {
   position: absolute;
-  left: 6%;
-  right: 6%;
+  left: 6%; right: 6%;
   height: 18px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 10px,
-    rgba(180, 150, 140, 0.2) 10px,
-    rgba(180, 150, 140, 0.2) 12px,
-    transparent 12px,
-    transparent 20px
-  );
+  background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(180,150,140,0.2) 10px, rgba(180,150,140,0.2) 12px, transparent 12px, transparent 20px);
 }
 
 .envelope-inner-lace-top { top: 10px; }
 .envelope-inner-lace-bottom { bottom: 10px; }
 
-/* Имена */
-.envelope-names-wrapper {
+/* Текст приглашения */
+.envelope-invitation-text {
   position: relative;
   z-index: 2;
   text-align: center;
 }
 
-.envelope-ampersand {
+.envelope-invitation-subtitle {
   display: block;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 3.5rem;
-  color: #C4A08A;
-  line-height: 0.8;
-  margin-bottom: 0.1rem;
-  animation: ampersandFloat 3s ease-in-out infinite;
+  font-size: 0.85rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #B4928A;
+  margin-bottom: 0.8rem;
 }
 
-.envelope-name-left,
-.envelope-name-right {
-  font-size: 2.4rem;
+.envelope-invitation-title {
+  font-size: 2.6rem;
   font-weight: 500;
   color: #4A3A2E;
-  letter-spacing: 2px;
   line-height: 1.2;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
 }
 
-.envelope-name-left {
-  margin-right: 0.3rem;
+.envelope-invitation-divider {
+  width: 50px;
+  height: 1px;
+  background: #C4A99A;
+  margin: 0 auto 0.8rem;
+  opacity: 0.6;
 }
 
-.envelope-name-right {
-  margin-left: 0.3rem;
+.envelope-invitation-names {
+  font-size: 1.2rem;
+  color: #8C6F5E;
+  letter-spacing: 1px;
+  font-weight: 400;
 }
 
 /* Сургучная печать */
@@ -335,28 +247,19 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  transition: transform 0.3s ease;
   animation: sealPulse 2.2s ease-in-out infinite;
 }
 
-.seal-button:hover {
-  transform: translateX(-50%) translateY(-4px);
-}
-
-.seal-button:hover .seal-wax {
-  box-shadow: 0 8px 30px rgba(180, 100, 80, 0.45);
-}
+.seal-button:hover { transform: translateX(-50%) translateY(-4px); }
 
 .seal-wax {
-  width: 72px;
-  height: 72px;
+  width: 72px; height: 72px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #D4856B, #B85C40 60%, #8B3A25 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 6px 22px rgba(160, 80, 50, 0.35), inset 0 -2px 4px rgba(0,0,0,0.1);
-  position: relative;
   transition: box-shadow 0.4s ease;
 }
 
@@ -368,9 +271,10 @@ h2 {
   border: 1.5px dashed rgba(255, 220, 200, 0.3);
 }
 
+.seal-button:hover .seal-wax { box-shadow: 0 8px 30px rgba(180, 100, 80, 0.45); }
+
 .seal-inner {
-  width: 54px;
-  height: 54px;
+  width: 54px; height: 54px;
   border-radius: 50%;
   background: linear-gradient(135deg, #C56B52, #A44A30);
   display: flex;
@@ -388,11 +292,7 @@ h2 {
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.seal-amp {
-  font-style: italic;
-  font-size: 1rem;
-  margin: 0 1px;
-}
+.seal-amp { font-style: italic; font-size: 1rem; margin: 0 1px; }
 
 .seal-hint {
   font-family: 'Inter', sans-serif;
@@ -403,70 +303,11 @@ h2 {
   font-weight: 400;
 }
 
-/* ========== НИТЬ И СЕРДЕЧКО ========== */
-.heart-thread-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 99;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-.heart-thread-container.visible {
-  opacity: 1;
-}
-
-.heart-thread-svg {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 200px;
-  height: 100%;
-  transform: translateX(-50%);
-  opacity: 0.5;
-}
-
-.thread-path {
-  animation: threadPulse 3s ease-in-out infinite;
-}
-
-.floating-heart {
-  position: fixed;
-  left: 50%;
-  top: 45%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  filter: drop-shadow(0 0 16px rgba(242, 150, 150, 0.55));
-  animation: heartFloat 2.8s ease-in-out infinite;
-}
-
-.heart-glow {
-  position: absolute;
-  inset: -14px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(242, 180, 180, 0.45) 0%, transparent 70%);
-  animation: glowPulse 2s ease-in-out infinite;
-}
-
-.heart-sparkle {
-  position: absolute;
-  font-size: 0.65rem;
-  color: #F9D2D2;
-  animation: sparkleFloat 2s ease-in-out infinite;
-}
-
-.heart-sparkle-1 { top: -10px; left: -8px; animation-delay: 0s; }
-.heart-sparkle-2 { top: -14px; right: -6px; animation-delay: 0.6s; }
-.heart-sparkle-3 { bottom: -8px; left: 50%; animation-delay: 1.2s; }
-
-/* ========== МУЗЫКА ========== */
+/* ===== МУЗЫКА ===== */
 .music-toggle {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
+  bottom: 24px; right: 24px;
+  width: 56px; height: 56px;
   border-radius: 50%;
   background: white;
   border: 1px solid rgba(180, 160, 140, 0.4);
@@ -480,16 +321,10 @@ h2 {
   justify-content: center;
 }
 
-.music-toggle:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
+.music-toggle:hover { transform: scale(1.08); }
+.music-toggle.playing { background: #f5efe8; }
 
-.music-toggle.playing {
-  background: #f5efe8;
-}
-
-/* ========== HERO ========== */
+/* ===== HERO ===== */
 .hero {
   min-height: 100vh;
   background-image: url('images/hero-bg.jpg');
@@ -509,15 +344,8 @@ h2 {
   background: radial-gradient(circle at 70% 30%, rgba(255,245,235,0.35) 0%, rgba(235,215,195,0.15) 100%);
 }
 
-.hero-container {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
-}
-
-.hero-content {
-  animation: fadeUp 1.2s ease-out;
-}
+.hero-container { position: relative; z-index: 2; padding: 2rem; }
+.hero-content { animation: fadeUp 1.2s ease-out; }
 
 .hero-subtitle {
   font-size: 1rem;
@@ -533,12 +361,7 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-.hero-title {
-  font-size: 3.6rem;
-  font-weight: 600;
-  color: #30221A;
-  margin-bottom: 1rem;
-}
+.hero-title { font-size: 3.6rem; font-weight: 600; color: #30221A; margin-bottom: 1rem; }
 
 .ampersand {
   font-family: 'Playfair Display', serif;
@@ -563,8 +386,7 @@ h2 {
 }
 
 .btn {
-  border: none;
-  cursor: pointer;
+  border: none; cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -579,34 +401,14 @@ h2 {
   box-shadow: 0 6px 14px rgba(71, 95, 70, 0.2);
 }
 
-.btn-primary:hover {
-  background: #36573a;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 25px -8px rgba(55, 75, 50, 0.3);
-}
-
-.btn-outline {
-  background: transparent;
-  border: 1.5px solid #B4A089;
-  color: #4F3E32;
-  margin-top: 1rem;
-  padding: 0.6rem 1.6rem;
-}
-
-.btn-outline:hover {
-  background: rgba(180, 160, 137, 0.1);
-  border-color: #8F735B;
-}
-
-.btn-full {
-  width: 100%;
-  margin-top: 1rem;
-}
+.btn-primary:hover { background: #36573a; transform: translateY(-3px); }
+.btn-outline { background: transparent; border: 1.5px solid #B4A089; color: #4F3E32; margin-top: 1rem; padding: 0.6rem 1.6rem; }
+.btn-outline:hover { background: rgba(180, 160, 137, 0.1); }
+.btn-full { width: 100%; margin-top: 1rem; }
 
 .hero-scroll-hint {
   position: absolute;
-  bottom: 28px;
-  left: 50%;
+  bottom: 28px; left: 50%;
   transform: translateX(-50%);
   font-size: 2rem;
   color: #6A5646;
@@ -627,19 +429,8 @@ h2 {
   border: 1px solid rgba(220, 195, 170, 0.3);
 }
 
-.welcome-text {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  color: #3E3A36;
-  margin-bottom: 2rem;
-}
-
-.signature {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #AD8B73;
-  font-weight: 500;
-}
+.welcome-text { font-size: 1.25rem; line-height: 1.7; color: #3E3A36; margin-bottom: 2rem; }
+.signature { font-size: 1.1rem; font-style: italic; color: #AD8B73; font-weight: 500; }
 
 /* Дата и Место */
 .location-grid-vertical {
@@ -657,18 +448,55 @@ h2 {
   box-shadow: var(--soft-shadow);
 }
 
+.calendar-wrapper { display: flex; justify-content: center; }
+
+.calendar-frame {
+  background: #FEFCF9;
+  border-radius: 24px;
+  border: 1px solid rgba(200, 170, 140, 0.25);
+  max-width: 420px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Карточка календаря с фоновой картинкой */
+.calendar-card-bg {
+  background-image: url('images/calendar-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.calendar-card-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(1px);
+  z-index: 0;
+  border-radius: 32px;
+}
+
+.calendar-card-bg .calendar-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .calendar-wrapper {
   display: flex;
   justify-content: center;
 }
 
 .calendar-frame {
-  background: #FEFCF9;
+  background: white;
   border-radius: 24px;
   padding: 1.5rem;
   border: 1px solid rgba(200, 170, 140, 0.25);
   max-width: 420px;
   width: 100%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
 }
 
 .calendar-month {
@@ -714,14 +542,15 @@ h2 {
 .calendar-event-time {
   text-align: center;
   margin-top: 1.2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #6B5A4E;
   font-weight: 500;
   background: #F5EFE8;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border-radius: 20px;
 }
 
+/* Место */
 .venue-photo-wrapper {
   position: relative;
   border-radius: 20px;
@@ -750,21 +579,9 @@ h2 {
   text-align: center;
 }
 
-.venue-overlay-info h3 {
-  font-size: 1.6rem;
-  margin-bottom: 0.4rem;
-}
-
-.venue-overlay-info p {
-  font-size: 0.95rem;
-  margin-bottom: 0.8rem;
-  opacity: 0.9;
-}
-
-.venue-overlay-info .btn-outline {
-  color: white;
-  border-color: rgba(255,255,255,0.7);
-}
+.venue-overlay-info h3 { font-size: 1.6rem; margin-bottom: 0.4rem; }
+.venue-overlay-info p { font-size: 0.95rem; margin-bottom: 0.8rem; opacity: 0.9; }
+.venue-overlay-info .btn-outline { color: white; border-color: rgba(255,255,255,0.7); }
 
 .venue-placeholder {
   position: relative;
@@ -776,17 +593,17 @@ h2 {
 
 /* Тайминг */
 .timeline-list {
-  max-width: 650px;
+  max-width: 500px;
   margin: 0 auto;
   background: rgba(255, 250, 240, 0.7);
   backdrop-filter: blur(3px);
   border-radius: 48px;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
 }
 
 .timeline-item {
   display: flex;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2rem;
   border-bottom: 1px solid rgba(150, 120, 100, 0.15);
   align-items: baseline;
 }
@@ -800,11 +617,7 @@ h2 {
   font-size: 1.1rem;
 }
 
-.event {
-  font-weight: 400;
-  color: #2C2A27;
-  flex: 1;
-}
+.event { font-weight: 400; color: #2C2A27; flex: 1; }
 
 /* Дресс-код */
 .dresscode-content {
@@ -824,8 +637,7 @@ h2 {
 }
 
 .color-dot {
-  width: 48px;
-  height: 48px;
+  width: 48px; height: 48px;
   border-radius: 100px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   border: 2px solid white;
@@ -838,21 +650,10 @@ h2 {
   overflow: hidden;
 }
 
-.carousel-container {
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-}
+.carousel-container { position: relative; border-radius: 24px; overflow: hidden; }
 
-.carousel-slide {
-  display: none;
-  text-align: center;
-}
-
-.carousel-slide.active {
-  display: block;
-  animation: slideIn 0.45s ease;
-}
+.carousel-slide { display: none; text-align: center; }
+.carousel-slide.active { display: block; animation: slideIn 0.45s ease; }
 
 .outfit-collage {
   display: flex;
@@ -872,11 +673,7 @@ h2 {
   border: 2px solid #E8D9CC;
 }
 
-.outfit-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.outfit-item img { width: 100%; height: 100%; object-fit: cover; }
 
 .outfit-label {
   margin-top: 0.8rem;
@@ -892,8 +689,7 @@ h2 {
   background: white;
   border: 1px solid rgba(180, 160, 140, 0.5);
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
+  width: 42px; height: 42px;
   font-size: 1.4rem;
   cursor: pointer;
   color: #5A4A3E;
@@ -906,16 +702,10 @@ h2 {
 .carousel-prev { left: 8px; }
 .carousel-next { right: 8px; }
 
-.carousel-dots {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
+.carousel-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 10px; height: 10px;
   background: #D6C8BC;
   border-radius: 50%;
   cursor: pointer;
@@ -932,7 +722,7 @@ h2 {
   margin-top: 1.5rem;
 }
 
-/* ========== ПОЖЕЛАНИЯ (НОВЫЙ ВЕРТИКАЛЬНЫЙ БЛОК) ========== */
+/* ===== ПОЖЕЛАНИЯ (оверлей прозрачнее на ~20%) ===== */
 .wishes-vertical-card {
   max-width: 580px;
   margin: 0 auto;
@@ -943,7 +733,6 @@ h2 {
   border-radius: 32px;
   overflow: hidden;
   box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.1);
-  /* Фиксированное соотношение сторон для вертикального прямоугольника */
   aspect-ratio: 3 / 4;
 }
 
@@ -959,16 +748,16 @@ h2 {
 .wishes-image-overlay {
   position: absolute;
   inset: 0;
-  /* Более плотный градиент для читаемости текста */
+  /* Было: 50% → 95% | Стало: 30% → 75% (прозрачнее на ~20%) */
   background: linear-gradient(
     to bottom,
-    rgba(245, 238, 228, 0.5) 0%,
-    rgba(240, 230, 218, 0.65) 25%,
-    rgba(235, 220, 205, 0.8) 50%,
-    rgba(230, 215, 198, 0.9) 75%,
-    rgba(225, 208, 190, 0.95) 100%
+    rgba(245, 238, 228, 0.3) 0%,
+    rgba(240, 230, 218, 0.45) 25%,
+    rgba(235, 220, 205, 0.6) 50%,
+    rgba(230, 215, 198, 0.7) 75%,
+    rgba(225, 208, 190, 0.75) 100%
   );
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(0.5px);
 }
 
 .wishes-text-overlay {
@@ -983,11 +772,7 @@ h2 {
   color: #3E3A36;
 }
 
-.wishes-text-overlay p {
-  font-size: 1.15rem;
-  line-height: 1.75;
-  margin-bottom: 1.5rem;
-}
+.wishes-text-overlay p { font-size: 1.15rem; line-height: 1.75; margin-bottom: 1.5rem; }
 
 .wishes-highlight {
   font-weight: 600;
@@ -995,10 +780,7 @@ h2 {
   border-bottom: 1px dashed #B4A089;
 }
 
-.wishes-emoji {
-  font-size: 1.6rem;
-  letter-spacing: 8px;
-}
+.wishes-emoji { font-size: 1.6rem; letter-spacing: 8px; }
 
 /* Форма */
 .form-container {
@@ -1020,12 +802,7 @@ h2 {
 
 .form-group { margin-bottom: 1.5rem; }
 
-label {
-  font-weight: 500;
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #3C342E;
-}
+label { font-weight: 500; display: block; margin-bottom: 0.5rem; color: #3C342E; }
 
 input, textarea, select {
   width: 100%;
@@ -1043,11 +820,7 @@ input:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(164, 190, 157, 0.2);
 }
 
-.radio-group .radio-options {
-  display: flex;
-  gap: 1.8rem;
-  margin-top: 0.5rem;
-}
+.radio-group .radio-options { display: flex; gap: 1.8rem; margin-top: 0.5rem; }
 
 .radio-label {
   display: flex;
@@ -1057,17 +830,9 @@ input:focus, textarea:focus {
   cursor: pointer;
 }
 
-.radio-label input {
-  width: auto;
-  accent-color: var(--deep-green);
-}
+.radio-label input { width: auto; accent-color: var(--deep-green); }
 
-.error-msg {
-  color: #c06c54;
-  font-size: 0.75rem;
-  margin-top: 0.4rem;
-  padding-left: 1rem;
-}
+.error-msg { color: #c06c54; font-size: 0.75rem; margin-top: 0.4rem; padding-left: 1rem; }
 
 .rsvp-success {
   text-align: center;
@@ -1088,17 +853,14 @@ footer {
   color: #5C534A;
 }
 
-/* ========== АНИМАЦИИ ========== */
+/* ===== АНИМАЦИИ ===== */
 .fade-section {
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.1), transform 0.7s ease;
 }
 
-.fade-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-section.visible { opacity: 1; transform: translateY(0); }
 
 @keyframes envelopeAppear {
   0% { opacity: 0; transform: scale(0.85) translateY(30px); }
@@ -1108,11 +870,6 @@ footer {
 @keyframes sealPulse {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(-6px); }
-}
-
-@keyframes ampersandFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
 }
 
 @keyframes fadeUp {
@@ -1130,32 +887,12 @@ footer {
   50% { box-shadow: 0 3px 22px rgba(200, 150, 130, 0.7); }
 }
 
-@keyframes heartFloat {
-  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-  50% { transform: translate(-50%, -50%) translateY(-16px); }
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.3); }
-}
-
-@keyframes sparkleFloat {
-  0%, 100% { opacity: 0.3; transform: translateY(0) scale(0.8); }
-  50% { opacity: 1; transform: translateY(-8px) scale(1.2); }
-}
-
-@keyframes threadPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
-}
-
 @keyframes slideIn {
   0% { opacity: 0; transform: translateX(30px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 
-/* ========== АДАПТИВ ========== */
+/* ===== АДАПТИВ ===== */
 @media (max-width: 768px) {
   .hero-title { font-size: 2.6rem; }
   .ampersand { font-size: 2.8rem; }
@@ -1167,38 +904,15 @@ footer {
   .form-container { padding: 1.5rem; }
   .outfit-collage { flex-direction: column; align-items: center; }
   .outfit-item { max-width: 180px; }
-  .calendar-frame { padding: 1rem; }
-  .heart-thread-svg { width: 120px; }
   
-  .envelope-main {
-    width: 90vw;
-    height: 65vh;
-  }
+  .envelope-main { width: 90vw; height: 65vh; }
+  .envelope-invitation-title { font-size: 1.9rem; }
+  .envelope-invitation-subtitle { font-size: 0.7rem; letter-spacing: 3px; }
+  .envelope-invitation-names { font-size: 1rem; }
+  .seal-wax { width: 60px; height: 60px; }
+  .seal-inner { width: 44px; height: 44px; }
   
-  .envelope-name-left,
-  .envelope-name-right {
-    font-size: 1.8rem;
-  }
-  
-  .envelope-ampersand {
-    font-size: 2.8rem;
-  }
-  
-  .seal-wax {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .seal-inner {
-    width: 44px;
-    height: 44px;
-  }
-  
-  .wishes-image-frame {
-    aspect-ratio: 2 / 3;
-  }
-  
-  .wishes-text-overlay {
-    padding: 2rem 1.5rem;
-  }
+  .wishes-image-frame { aspect-ratio: 2 / 3; }
+  .wishes-text-overlay { padding: 2rem 1.5rem; }
+  .calendar-content { padding: 1rem; }
 }

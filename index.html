@@ -9,16 +9,14 @@
 </head>
 <body>
 
-  <!-- АНИМАЦИЯ ОТКРЫТИЯ КОНВЕРТА (полный экран) -->
+  <!-- ===== КОНВЕРТ (полный экран) ===== -->
   <div class="envelope-overlay" id="envelopeOverlay">
     <div class="envelope-fullscreen">
-      <!-- Кружевной узор -->
+      <!-- Кружевные рамки -->
       <div class="lace-border lace-top"></div>
       <div class="lace-border lace-bottom"></div>
       <div class="lace-border lace-left"></div>
       <div class="lace-border lace-right"></div>
-      
-      <!-- Угловые кружевные элементы -->
       <div class="lace-corner corner-tl"></div>
       <div class="lace-corner corner-tr"></div>
       <div class="lace-corner corner-bl"></div>
@@ -31,25 +29,26 @@
           <div class="envelope-inner-lace-top"></div>
           <div class="envelope-inner-lace-bottom"></div>
           
-          <!-- Имена -->
-          <div class="envelope-names-wrapper">
-            <span class="envelope-ampersand">&</span>
-            <h1 class="envelope-name-left">Валерия</h1>
-            <h1 class="envelope-name-right">Дмитрий</h1>
+          <!-- Надпись «Приглашение на свадьбу» -->
+          <div class="envelope-invitation-text">
+            <span class="envelope-invitation-subtitle">Дорогие гости</span>
+            <h1 class="envelope-invitation-title">Приглашение<br>на свадьбу</h1>
+            <div class="envelope-invitation-divider"></div>
+            <p class="envelope-invitation-names">Валерии & Дмитрия</p>
           </div>
 
-          <!-- Сургутная печать (кнопка) -->
+          <!-- Сургучная печать -->
           <button class="seal-button" id="openInvitationBtn">
             <div class="seal-wax">
               <div class="seal-inner">
                 <span class="seal-monogram">В<span class="seal-amp">&</span>Д</span>
               </div>
             </div>
-            <span class="seal-hint">Открыть приглашение</span>
+            <span class="seal-hint">Открыть</span>
           </button>
         </div>
 
-        <!-- Крышка конверта (откидывается вверх) -->
+        <!-- Крышка конверта -->
         <div class="envelope-flap" id="envelopeFlap">
           <div class="flap-lace"></div>
         </div>
@@ -57,53 +56,20 @@
     </div>
   </div>
 
-  <!-- Нить и сердечко (скрыты до открытия) -->
-  <div class="heart-thread-container" id="heartThreadContainer">
-    <svg class="heart-thread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 2000" preserveAspectRatio="none">
-      <path class="thread-path" d="M100,0 C85,100 120,200 100,300 C80,400 115,500 100,600 C85,700 120,800 100,900 C80,1000 115,1100 100,1200 C85,1300 120,1400 100,1500 C80,1600 115,1700 100,1800 C85,1900 120,2000 100,2100" fill="none" stroke="url(#threadGradient)" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.5"/>
-      <defs>
-        <linearGradient id="threadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#E8C4B8; stop-opacity:0.08"/>
-          <stop offset="50%" style="stop-color:#D4A99A; stop-opacity:0.55"/>
-          <stop offset="100%" style="stop-color:#E8C4B8; stop-opacity:0.08"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <div class="floating-heart" id="floatingHeart">
-      <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17 29.5L14.535 27.278C5.78 19.475 0 14.738 0 8.5C0 3.806 3.806 0 8.5 0C11.186 0 13.747 1.201 15.5 3.091L17 4.614L18.5 3.091C20.253 1.201 22.814 0 25.5 0C30.194 0 34 3.806 34 8.5C34 14.738 28.22 19.475 19.465 27.278L17 29.5Z" fill="url(#heartGradient)"/>
-        <defs>
-          <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#F9D2D2; stop-opacity:1"/>
-            <stop offset="40%" style="stop-color:#F0B0B0; stop-opacity:0.95"/>
-            <stop offset="100%" style="stop-color:#F9D2D2; stop-opacity:1"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span class="heart-glow"></span>
-      <span class="heart-sparkle heart-sparkle-1">✦</span>
-      <span class="heart-sparkle heart-sparkle-2">✧</span>
-      <span class="heart-sparkle heart-sparkle-3">✦</span>
-    </div>
-  </div>
-
-  <!-- Аудио плеер -->
+  <!-- Аудио -->
   <audio id="bgMusic" loop preload="auto">
     <source src="music/wedding-music.mp3" type="audio/mpeg">
-    Ваш браузер не поддерживает аудио.
   </audio>
   <button class="music-toggle" id="musicToggle" title="Включить/выключить музыку">🔇</button>
 
-  <!-- Hero секция -->
+  <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-overlay"></div>
     <div class="hero-container">
       <div class="hero-content">
         <span class="hero-subtitle">Мы женимся!</span>
         <h1 class="hero-title">Валерия <span class="ampersand">&</span> Дмитрий</h1>
-        <div class="hero-date">
-          <span>21 августа 2026 года</span>
-        </div>
+        <div class="hero-date"><span>21 августа 2026 года</span></div>
         <button class="btn btn-primary rsvp-trigger" data-target="rsvp">Подтвердить присутствие</button>
       </div>
     </div>
@@ -134,23 +100,23 @@
       </div>
       <div class="location-grid-vertical">
         <!-- Дата с календарем -->
-        <div class="location-card-vertical">
-          <div class="calendar-wrapper">
-            <div class="calendar-frame">
-              <div class="calendar-month">Август 2026</div>
-              <div class="calendar-grid">
-                <div class="calendar-day-header">Пн</div><div class="calendar-day-header">Вт</div><div class="calendar-day-header">Ср</div><div class="calendar-day-header">Чт</div><div class="calendar-day-header">Пт</div><div class="calendar-day-header">Сб</div><div class="calendar-day-header">Вс</div>
-                <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
-                <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
-                <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
-                <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlighted-date">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
-                <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
-                <div class="calendar-day">31</div>
-              </div>
-              <div class="calendar-event-time">Сбор гостей 15:30 · Церемония 16:00</div>
-            </div>
-          </div>
-        </div>
+<div class="location-card-vertical calendar-card-bg">
+  <div class="calendar-wrapper">
+    <div class="calendar-frame">
+      <div class="calendar-month">Август 2026</div>
+      <div class="calendar-grid">
+        <div class="calendar-day-header">Пн</div><div class="calendar-day-header">Вт</div><div class="calendar-day-header">Ср</div><div class="calendar-day-header">Чт</div><div class="calendar-day-header">Пт</div><div class="calendar-day-header">Сб</div><div class="calendar-day-header">Вс</div>
+        <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
+        <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
+        <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
+        <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlighted-date">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
+        <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
+        <div class="calendar-day">31</div>
+      </div>
+      <div class="calendar-event-time">Сбор гостей 15:00 · Начало банкета 16:00</div>
+    </div>
+  </div>
+</div>
 
         <!-- Место -->
         <div class="location-card-vertical">
@@ -167,7 +133,7 @@
     </div>
   </section>
 
-  <!-- Тайминг дня -->
+  <!-- Тайминг дня (сокращённый) -->
   <section class="section fade-section" id="timeline">
     <div class="container">
       <div class="section-header">
@@ -175,12 +141,18 @@
         <div class="divider"></div>
       </div>
       <div class="timeline-list">
-        <div class="timeline-item"><span class="time">15:30</span><span class="event">Встреча гостей & легкий фуршет</span></div>
-        <div class="timeline-item"><span class="time">16:00</span><span class="event">Торжественная церемония</span></div>
-        <div class="timeline-item"><span class="time">17:00</span><span class="event">Фотосессия & шампанское</span></div>
-        <div class="timeline-item"><span class="time">18:30</span><span class="event">Банкет и праздничный ужин</span></div>
-        <div class="timeline-item"><span class="time">20:30</span><span class="event">Сладкий стол & первый танец</span></div>
-        <div class="timeline-item"><span class="time">23:00</span><span class="event">Фейерверк & завершение вечера</span></div>
+        <div class="timeline-item">
+          <span class="time">15:00</span>
+          <span class="event">Сбор гостей. Фуршет</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">16:00</span>
+          <span class="event">Начало банкета</span>
+        </div>
+        <div class="timeline-item">
+          <span class="time">23:00</span>
+          <span class="event">Окончание вечера</span>
+        </div>
       </div>
     </div>
   </section>
@@ -195,14 +167,26 @@
       <div class="dresscode-content">
         <p>Мы будем рады видеть вас в элегантных образах в нежной гамме. Вдохновение — сад цветущих пионов.</p>
         <div class="color-palette">
-          <span class="color-dot" style="background: #F7E9E0;"></span>
-          <span class="color-dot" style="background: #D6E0D3;"></span>
-          <span class="color-dot" style="background: #F2D5C4;"></span>
-          <span class="color-dot" style="background: #E8D1B5;"></span>
-          <span class="color-dot" style="background: #B7CFC1;"></span>
-        </div>
+  <!-- 1. Тёплый нюд -->
+  <span class="color-dot" style="background: #E9C2A6;"></span>
+  <!-- 2. Пыльная роза -->
+  <span class="color-dot" style="background: #E4B49A;"></span>
+  <!-- 3. Карамель -->
+  <span class="color-dot" style="background: #D6B089;"></span>
+  <!-- 4. Светлый оливковый -->
+  <span class="color-dot" style="background: #D7DCC8;"></span>
+  <!-- 5. Мягкий хаки -->
+  <span class="color-dot" style="background: #BFC7AE;"></span>
+  <!-- 6. Приглушённый зелёный -->
+  <span class="color-dot" style="background: #9FAF8D;"></span>
+  <!-- 7. Светлый серо-голубой -->
+  <span class="color-dot" style="background: #C7D3E3;"></span>
+  <!-- 8. Нежный голубой -->
+  <span class="color-dot" style="background: #AEBFD6;"></span>
+  <!-- 9. Глубокий холодный -->
+  <span class="color-dot" style="background: #8FA8C6;"></span>
+</div>
         
-        <!-- Карусель -->
         <div class="outfit-carousel">
           <div class="carousel-container" id="outfitCarousel">
             <div class="carousel-slide active">
@@ -238,7 +222,7 @@
     </div>
   </section>
 
-  <!-- Пожелания (обновленный фон — вертикальный прямоугольник с полной картинкой) -->
+  <!-- Пожелания -->
   <section class="section fade-section" id="wishes">
     <div class="container">
       <div class="section-header">
@@ -260,7 +244,7 @@
     </div>
   </section>
 
-  <!-- RSVP форма -->
+  <!-- RSVP -->
   <section class="section fade-section" id="rsvp">
     <div class="container">
       <div class="section-header">
