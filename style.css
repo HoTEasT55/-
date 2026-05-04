@@ -665,8 +665,8 @@ h2 {
 .outfit-item {
   flex: 1;
   min-width: 140px;
-  max-width: 220px;
-  aspect-ratio: 3/4;
+  max-width: 250px;
+  aspect-ratio: 1/1;
   background: #F5EFE8;
   border-radius: 20px;
   overflow: hidden;
