@@ -9,19 +9,30 @@ document.addEventListener('DOMContentLoaded', () => {
   let musicStarted = false;
 
   function openEnvelope() {
-    if (!musicStarted) {
-      bgMusic.volume = 0.35;
-      bgMusic.play().then(() => {
-        musicToggle.textContent = '🎵';
-        musicToggle.classList.add('playing');
-        musicStarted = true;
-      }).catch(e => console.log('Автовоспроизведение заблокировано:', e));
-    }
-    if (envelopeFlap) envelopeFlap.classList.add('opened');
-    setTimeout(() => {
-      envelopeOverlay.classList.add('closed');
-    }, 900);
+  if (!musicStarted) {
+    bgMusic.volume = 0.35;
+    bgMusic.play().then(() => {
+      musicToggle.textContent = '🎵';
+      musicToggle.classList.add('playing');
+      musicStarted = true;
+    }).catch(e => console.log('Автовоспроизведение заблокировано:', e));
   }
+  
+  // Открываем створки
+  const leftFlap = document.getElementById('cardFlapLeft');
+  const rightFlap = document.getElementById('cardFlapRight');
+  if (leftFlap) leftFlap.classList.add('opened');
+  if (rightFlap) rightFlap.classList.add('opened');
+  
+  // Скрываем печать
+  const sealBtn = document.getElementById('openInvitationBtn');
+  if (sealBtn) sealBtn.classList.add('hidden-seal');
+  
+  // Закрываем оверлей через 4 секунды
+  setTimeout(() => {
+    envelopeOverlay.classList.add('closed');
+  }, 4000);
+}
 
   if (openBtn) {
     openBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openEnvelope(); });
@@ -113,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mapBtn = document.querySelector('.map-btn');
   if (mapBtn) {
     mapBtn.addEventListener('click', () => {
-      window.open('https://yandex.ru/maps/213/moscow/house/gorokhovskiy_pereulok_19s4/Z04YcAFoTUMFQFtvfXt3dHlqYQ==/?ll=37.668378%2C55.765539&z=19.94', '_blank');
+      window.open('https://yandex.ru/maps/org/zelyony_bereg/46385904496/?ll=37.469665%2C56.029529&z=12', '_blank');
     });
   }
   const scrollHint = document.querySelector('.hero-scroll-hint');

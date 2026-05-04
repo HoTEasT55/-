@@ -9,44 +9,43 @@
 </head>
 <body>
 
-  <!-- ===== КОНВЕРТ ===== -->
+  <!-- ===== ОТКРЫТКА ===== -->
 <div class="envelope-overlay" id="envelopeOverlay">
   <div class="envelope-fullscreen">
     
-    <!-- Декоративные кружева по углам экрана -->
-    <div class="envelope-ornament ornament-tl"></div>
-    <div class="envelope-ornament ornament-tr"></div>
-    <div class="envelope-ornament ornament-bl"></div>
-    <div class="envelope-ornament ornament-br"></div>
-    
-    <!-- Конверт -->
-    <div class="envelope-wrapper" id="envelopeMain">
+    <div class="invitation-card" id="envelopeMain">
       
-      <!-- Задняя стенка (видна при открытии) -->
-      <div class="envelope-back">
-        <div class="envelope-back-pattern"></div>
-      </div>
-      
-      <!-- Клапан -->
-      <div class="envelope-flap" id="envelopeFlap">
-        <div class="envelope-flap-inner">
-          <!-- Кружевной узор на клапане -->
-          <div class="flap-lace-top"></div>
-          <div class="flap-lace-pattern"></div>
-          <div class="flap-lace-bottom"></div>
+      <!-- Левая створка -->
+      <div class="card-flap card-flap-left" id="cardFlapLeft">
+        <div class="card-flap-inner">
+          <div class="card-lace card-lace-tl"></div>
+          <div class="card-lace card-lace-bl"></div>
+          <div class="card-lace-pattern-left"></div>
         </div>
       </div>
       
-      <!-- Тело конверта -->
-      <div class="envelope-body-front">
+      <!-- Правая створка -->
+      <div class="card-flap card-flap-right" id="cardFlapRight">
+        <div class="card-flap-inner">
+          <div class="card-lace card-lace-tr"></div>
+          <div class="card-lace card-lace-br"></div>
+          <div class="card-lace-pattern-right"></div>
         </div>
-        
-        <!-- Кружевная полоса -->
-        <div class="envelope-lace-band"></div>
       </div>
       
-      <!-- Сургучная печать (на стыке клапана и тела) -->
-      <button class="seal-button" id="openInvitationBtn">
+      <!-- Внутренняя часть -->
+      <div class="card-inside">
+        <div class="card-inside-pattern"></div>
+        <div class="card-inside-content">
+          <span class="card-inside-subtitle">Дорогие гости</span>
+          <h2 class="card-inside-title">Приглашение<br>на свадьбу</h2>
+          <div class="card-inside-divider"></div>
+          <p class="card-inside-names">Валерии & Дмитрия</p>
+        </div>
+      </div>
+      
+      <!-- Печать по центру -->
+      <button class="seal-button-card" id="openInvitationBtn">
         <div class="seal-wax">
           <div class="seal-inner">
             <span class="seal-monogram">В<span class="seal-amp">&</span>Д</span>
@@ -55,10 +54,6 @@
         <span class="seal-label">Открыть</span>
       </button>
       
-      <!-- Боковые грани -->
-      <div class="envelope-edge-left"></div>
-      <div class="envelope-edge-right"></div>
-      <div class="envelope-edge-bottom"></div>
     </div>
     
     <p class="envelope-hint">Нажмите на печать</p>
@@ -109,7 +104,7 @@
       </div>
       <div class="location-grid-vertical">
         <!-- Дата с календарем -->
-<div class="location-card-vertical calendar-card-bg">
+<div class="location-card-vertical">
   <div class="calendar-wrapper">
     <div class="calendar-frame">
       <div class="calendar-month">Август 2026</div>
@@ -118,7 +113,7 @@
         <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
         <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
         <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
-        <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlighted-date">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
+        <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day highlighted-date"><span class="date-heart">21</span></div><div class="calendar-day">22</div><div class="calendar-day">23</div>
         <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
         <div class="calendar-day">31</div>
       </div>
@@ -130,10 +125,10 @@
         <!-- Место -->
         <div class="location-card-vertical">
           <div class="venue-photo-wrapper">
-            <img src="images/venue-photo.jpg" alt="Банкетный зал Муза" class="venue-photo" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #f5ebe0, #e8d5c4)'; this.parentNode.innerHTML += '<div class=\'venue-placeholder\'><span>🕍</span><p>Банкетный зал «Муза»</p></div>';">
+            <img src="images/venue-photo.jpg" alt="Банкетный зал Зеленый берег" class="venue-photo" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg, #f5ebe0, #e8d5c4)'; this.parentNode.innerHTML += '<div class=\'venue-placeholder\'><span>🕍</span><p>Банкетный зал «Зеленый Берег»</p></div>';">
             <div class="venue-overlay-info">
-              <h3>Банкетный зал "Муза"</h3>
-              <p>Гороховский пер., 19, стр. 4, Москва</p>
+              <h3>Банкетный зал "Зеленый Берег"</h3>
+              <p>городской округ Лобня, Московская область</p>
               <button class="btn btn-outline map-btn">Открыть карту</button>
             </div>
           </div>
@@ -267,7 +262,7 @@
           <img src="images/wishes-bg.jpg" alt="Фон пожеланий" class="wishes-full-image" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(180deg, #f9f0e8, #f0e2d5, #e8d5c4)';">
           <div class="wishes-image-overlay"></div>
           <div class="wishes-text-overlay">
-            <p>Ваше присутствие на нашей свадьбе — самый дорогой подарок. Если вы хотите выразить свою любовь и заботу иначе — мы будем благодарны за конверты с тёплыми пожеланиями для нашего общего будущего. А если хочется выбрать что-то особенное — у нас есть виш-лист. Напишите нам, и мы поделимся идеями 💝</p>
+            <p>Ваше присутствие на нашей свадьбе — самый дорогой подарок. Если вы хотите выразить свою любовь и заботу иначе — мы будем благодарны за конверты с тёплыми пожеланиями для нашего общего будущего. А если хочется выбрать что-то особенное — у нас есть виш-лист. Напишите нам, и мы поделимся идеями 🦊&🐻</p>
             </div>
         </div>
       </div>
