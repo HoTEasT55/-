@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Закрываем оверлей через 4 секунды
   setTimeout(() => {
     envelopeOverlay.classList.add('closed');
-  }, 4000);
+  }, 2000);
 }
 
   if (openBtn) {
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const data = collectFormData();
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9atlQTAdpAvLZ1P2Wl_RCQzH247E-rdoAktmm3ePYIOt0wvo9wXCcatr2pGNXpt1k5g/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxkYFovXkTOlD6CFzQ6MkuKquWNTKtm0xKTVERV2mboNqnoSett1QLIBbC2L4qVi9EbgQ/exec';
 
     try {
       await fetch(SCRIPT_URL, {
