@@ -1036,6 +1036,37 @@ footer {
   color: #5C534A;
 }
 
+/* Спиннер отправки */
+.submit-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem;
+  color: #8C6F5E;
+  font-size: 0.9rem;
+  background: #FBF5EF;
+  border-radius: 48px;
+  margin-bottom: 0.5rem;
+}
+
+.submit-spinner.hidden {
+  display: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #E3D9D0;
+  border-top-color: #4A6A4E;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ===== АНИМАЦИИ ===== */
 .fade-section {
   opacity: 0;

@@ -348,13 +348,25 @@ document.addEventListener('DOMContentLoaded', () => {
     return data;
   }
 
+    let isSubmitting = false;
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    // Блокируем повторную отправку
+    if (isSubmitting) return;
     if (!validateForm()) return;
 
-    const data = collectFormData();
+    isSubmitting = true;
+    
+    // Показываем спиннер, скрываем кнопку
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const spinner = document.getElementById('submitSpinner');
+    if (submitBtn) submitBtn.classList.add('hidden');
+    if (spinner) spinner.classList.remove('hidden');
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxkYFovXkTOlD6CFzQ6MkuKquWNTKtm0xKTVERV2mboNqnoSett1QLIBbC2L4qVi9EbgQ/exec';
+    const data = collectFormData();
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylQkR9aE1oXZ8jYIvsjnc-n0tsHIn_WsnA0UUK9IrkKgyQZUYrk5XpNHHYb4CXbb4EOw/exec';
 
     try {
       await fetch(SCRIPT_URL, {
@@ -364,28 +376,22 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(data)
       });
 
+      // Задержка 2 секунды, чтобы пользователь видел спиннер
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
       form.classList.add('hidden');
       successDiv.classList.remove('hidden');
-
-      if (!document.querySelector('.reset-form-btn')) {
-        const btn = document.createElement('button');
-        btn.textContent = 'Отправить ещё один ответ';
-        btn.classList.add('btn', 'btn-outline', 'reset-form-btn');
-        btn.style.marginTop = '1rem';
-        btn.addEventListener('click', () => {
-          form.reset();
-          form.classList.remove('hidden');
-          successDiv.classList.add('hidden');
-          clearFieldErrors();
-          updateExtraGuests(1);
-          btn.remove();
-        });
-        successDiv.appendChild(btn);
-      }
+      if (spinner) spinner.classList.add('hidden');
+      
       console.log('Данные отправлены:', data);
     } catch (error) {
       console.error('Ошибка отправки:', error);
       alert('Произошла ошибка. Проверьте интернет и попробуйте снова.');
+      
+      // Возвращаем кнопку при ошибке
+      if (submitBtn) submitBtn.classList.remove('hidden');
+      if (spinner) spinner.classList.add('hidden');
+      isSubmitting = false;
     }
   });
 
