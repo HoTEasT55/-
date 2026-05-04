@@ -206,11 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (guestsInput) {
-  guestsInput.addEventListener('change', () => {
-    updateExtraGuests(guestsInput.value);
-  });
-  updateExtraGuests(guestsInput.value);
+    if (guestsInput) {
+    guestsInput.addEventListener('change', () => {
+      updateExtraGuests(guestsInput.value);
     });
     updateExtraGuests(guestsInput.value);
   }

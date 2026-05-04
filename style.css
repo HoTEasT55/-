@@ -1111,3 +1111,32 @@ footer {
     margin-top: 0.2rem;
   }
 }
+
+/* Уведомление перед формой */
+.rsvp-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: #FBF5EF;
+  border: 1px solid rgba(180, 150, 130, 0.25);
+  border-radius: 20px;
+  padding: 1rem 1.3rem;
+  margin-bottom: 1.8rem;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rsvp-notice-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  opacity: 0.8;
+}
+
+.rsvp-notice p {
+  font-size: 0.85rem;
+  color: #6B5A4E;
+  line-height: 1.5;
+  margin: 0;
+}
