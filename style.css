@@ -54,8 +54,8 @@ h2 {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: #FDF9F5;
-  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.4s;
+  background: radial-gradient(ellipse at center, #F9F4EF 0%, #EDE1D4 50%, #DDCBBB 100%);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
   visibility: visible;
   opacity: 1;
 }
@@ -71,236 +71,446 @@ h2 {
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(ellipse at center, #FDF9F5 0%, #F5EDE4 60%, #EDDFD2 100%);
 }
 
-/* Кружевные рамки */
-.lace-border {
+/* Декоративные орнаменты по углам */
+.envelope-ornament {
   position: absolute;
+  width: 180px;
+  height: 180px;
   pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+.ornament-tl {
+  top: -40px;
+  left: -40px;
+  background: radial-gradient(circle at 30% 30%, #C9A88C 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+  mask: radial-gradient(circle at 30% 30%, black 30%, transparent 70%);
+}
+
+.ornament-tr {
+  top: -40px;
+  right: -40px;
+  background: radial-gradient(circle at 70% 30%, #C9A88C 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+  mask: radial-gradient(circle at 70% 30%, black 30%, transparent 70%);
+}
+
+.ornament-bl {
+  bottom: -40px;
+  left: -40px;
+  background: radial-gradient(circle at 30% 70%, #C9A88C 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+  mask: radial-gradient(circle at 30% 70%, black 30%, transparent 70%);
+}
+
+.ornament-br {
+  bottom: -40px;
+  right: -40px;
+  background: radial-gradient(circle at 70% 70%, #C9A88C 0.5px, transparent 0.5px);
+  background-size: 14px 14px;
+  mask: radial-gradient(circle at 70% 70%, black 30%, transparent 70%);
+}
+
+/* Обёртка конверта */
+.envelope-wrapper {
+  position: relative;
+  width: min(500px, 88vw);
+  height: 340px;
   z-index: 1;
-  opacity: 0.35;
+  animation: envelopeEntry 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.lace-top {
-  top: 0; left: 10%; right: 10%; height: 80px;
-  background: repeating-linear-gradient(90deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
-              radial-gradient(ellipse 8px 20px at 50% 0, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
-  background-size: 42px 100%, 42px 100%;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.25), transparent);
-}
-
-.lace-bottom {
-  bottom: 0; left: 10%; right: 10%; height: 80px;
-  background: repeating-linear-gradient(90deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
-              radial-gradient(ellipse 8px 20px at 50% 100%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
-  background-size: 42px 100%, 42px 100%;
-  mask-image: linear-gradient(to top, rgba(0,0,0,0.25), transparent);
-}
-
-.lace-left {
-  left: 0; top: 10%; bottom: 10%; width: 80px;
-  background: repeating-linear-gradient(180deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
-              radial-gradient(ellipse 20px 8px at 0 50%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
-  background-size: 100% 42px, 100% 42px;
-  mask-image: linear-gradient(to right, rgba(0,0,0,0.25), transparent);
-}
-
-.lace-right {
-  right: 0; top: 10%; bottom: 10%; width: 80px;
-  background: repeating-linear-gradient(180deg, transparent, transparent 14px, #C4A99A 14px, #C4A99A 16px, transparent 16px, transparent 28px, #C4A99A 28px, #C4A99A 30px),
-              radial-gradient(ellipse 20px 8px at 100% 50%, transparent 60%, #C4A99A 60%, #C4A99A 62%, transparent 62%);
-  background-size: 100% 42px, 100% 42px;
-  mask-image: linear-gradient(to left, rgba(0,0,0,0.25), transparent);
-}
-
-.lace-corner {
+/* Задняя стенка */
+.envelope-back {
   position: absolute;
-  width: 120px; height: 120px;
-  z-index: 1; pointer-events: none;
+  inset: 0;
+  background: linear-gradient(180deg, #FBF7F3 0%, #F3EBE2 100%);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.envelope-back-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(180, 155, 135, 0.02) 20px, rgba(180, 155, 135, 0.02) 21px);
+  border-radius: 10px;
+}
+
+/* Клапан */
+.envelope-flap {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  height: 200px;
+  z-index: 20;
+  transform-origin: top center;
+  transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+.envelope-flap.opened {
+  transform: rotateX(-188deg);
+}
+
+.envelope-flap-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(175deg, #FDFAF7 0%, #F2E7D9 40%, #E5D3BC 100%);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Кружева на клапане */
+.flap-lace-top {
+  position: absolute;
+  top: 25px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #C8A88A 0px,
+    #C8A88A 3px,
+    transparent 3px,
+    transparent 8px
+  );
+  opacity: 0.5;
+}
+
+.flap-lace-pattern {
+  position: absolute;
+  top: 55%;
+  left: 10%;
+  right: 10%;
+  bottom: 15%;
+  background:
+    radial-gradient(circle at 20% 50%, transparent 40%, #D4BBA5 40%, #D4BBA5 42%, transparent 42%),
+    radial-gradient(circle at 50% 50%, transparent 40%, #D4BBA5 40%, #D4BBA5 42%, transparent 42%),
+    radial-gradient(circle at 80% 50%, transparent 40%, #D4BBA5 40%, #D4BBA5 42%, transparent 42%);
+  background-size: 33.33% 100%;
   opacity: 0.3;
 }
 
-.corner-tl { top: 0; left: 0; background: radial-gradient(circle at 0 0, #C4A99A 1px, transparent 1px); background-size: 12px 12px; }
-.corner-tr { top: 0; right: 0; background: radial-gradient(circle at 100% 0, #C4A99A 1px, transparent 1px); background-size: 12px 12px; }
-.corner-bl { bottom: 0; left: 0; background: radial-gradient(circle at 0 100%, #C4A99A 1px, transparent 1px); background-size: 12px 12px; }
-.corner-br { bottom: 0; right: 0; background: radial-gradient(circle at 100% 100%, #C4A99A 1px, transparent 1px); background-size: 12px 12px; }
-
-.envelope-main {
-  position: relative;
-  z-index: 5;
-  width: min(520px, 88vw);
-  height: min(620px, 78vh);
-  animation: envelopeAppear 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+.flap-lace-bottom {
+  position: absolute;
+  bottom: 12px;
+  left: 12%;
+  right: 12%;
+  height: 16px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 9px,
+    rgba(180, 145, 120, 0.35) 9px,
+    rgba(180, 145, 120, 0.35) 11px,
+    transparent 11px,
+    transparent 18px
+  );
+  border-radius: 0 0 10px 10px;
 }
 
-.envelope-flap {
+/* Тело конверта */
+.envelope-body-front {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 55%;
-  background: linear-gradient(175deg, #F9F2EB 0%, #F0E5D8 40%, #E8D9C8 100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: linear-gradient(180deg, #FEFCFA 0%, #F9F3EC 100%);
+  border-radius: 0 0 8px 8px;
   z-index: 10;
-  transform-origin: top center;
-  clip-path: polygon(0 0, 50% 88%, 100% 0);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-  transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 1px solid rgba(180, 150, 130, 0.3);
-}
-
-.envelope-flap.opened { transform: rotateX(-180deg); }
-
-.flap-lace {
-  position: absolute;
-  bottom: 8px; left: 20%; right: 20%;
-  height: 24px;
-  background: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(180,150,130,0.35) 8px, rgba(180,150,130,0.35) 10px, transparent 10px, transparent 18px);
-  border-radius: 0 0 12px 12px;
-}
-
-.envelope-front {
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 60%;
-  background: linear-gradient(180deg, #FDF9F5 0%, #F8F2EB 100%);
-  border-radius: 4px 4px 16px 16px;
-  box-shadow: 0 25px 50px -15px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 1px solid rgba(200, 175, 155, 0.25);
-}
-
-.envelope-paper-texture {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(180,150,130,0.02) 3px, rgba(180,150,130,0.02) 4px),
-    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(180,150,130,0.02) 3px, rgba(180,150,130,0.02) 4px);
-}
-
-.envelope-inner-lace-top,
-.envelope-inner-lace-bottom {
-  position: absolute;
-  left: 6%; right: 6%;
-  height: 18px;
-  background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(180,150,140,0.2) 10px, rgba(180,150,140,0.2) 12px, transparent 12px, transparent 20px);
-}
-
-.envelope-inner-lace-top { top: 10px; }
-.envelope-inner-lace-bottom { bottom: 10px; }
-
-/* Текст приглашения */
-.envelope-invitation-text {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.envelope-invitation-subtitle {
-  display: block;
-  font-size: 0.85rem;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #B4928A;
-  margin-bottom: 0.8rem;
-}
-
-.envelope-invitation-title {
-  font-size: 2.6rem;
-  font-weight: 500;
-  color: #4A3A2E;
-  line-height: 1.2;
-  letter-spacing: 2px;
-  margin-bottom: 0.8rem;
-}
-
-.envelope-invitation-divider {
-  width: 50px;
-  height: 1px;
-  background: #C4A99A;
-  margin: 0 auto 0.8rem;
-  opacity: 0.6;
-}
-
-.envelope-invitation-names {
-  font-size: 1.2rem;
-  color: #8C6F5E;
-  letter-spacing: 1px;
-  font-weight: 400;
-}
-
-/* Сургучная печать */
-.seal-button {
-  position: absolute;
-  bottom: -48px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 15;
-  background: none;
-  border: none;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
-  animation: sealPulse 2.2s ease-in-out infinite;
+  justify-content: center;
+  box-shadow: 0 15px 40px -15px rgba(0,0,0,0.1);
+  border-top: 2px solid rgba(180, 150, 130, 0.25);
 }
 
-.seal-button:hover { transform: translateX(-50%) translateY(-4px); }
+/* Текст */
+.envelope-text-top {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.envelope-text-subtitle {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #B49782;
+  margin-bottom: 0.3rem;
+}
+
+.envelope-text-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #4A382E;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* Кружевная полоса */
+.envelope-lace-band {
+  width: 70%;
+  height: 18px;
+  margin: 0.4rem 0 0.6rem;
+  position: relative;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(180, 145, 120, 0.3) 8px,
+    rgba(180, 145, 120, 0.3) 10px,
+    transparent 10px,
+    transparent 16px
+  );
+}
+
+.envelope-lace-band::before,
+.envelope-lace-band::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C8A88A;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+
+.envelope-lace-band::before { left: -2px; }
+.envelope-lace-band::after { right: -2px; }
+
+/* Печать — по центру конверта, на стыке клапана и тела */
+.seal-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  animation: sealPulse 2.2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.seal-button:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+}
 
 .seal-wax {
-  width: 72px; height: 72px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #D4856B, #B85C40 60%, #8B3A25 100%);
+  background: radial-gradient(circle at 38% 35%, #D4856B, #B85C40 55%, #7A3020 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 22px rgba(160, 80, 50, 0.35), inset 0 -2px 4px rgba(0,0,0,0.1);
+  box-shadow:
+    0 10px 30px rgba(160, 80, 50, 0.4),
+    inset 0 -3px 6px rgba(0,0,0,0.12),
+    0 0 0 5px rgba(200, 150, 130, 0.18);
   transition: box-shadow 0.4s ease;
 }
 
 .seal-wax::before {
   content: '';
   position: absolute;
-  inset: 6px;
+  inset: 7px;
   border-radius: 50%;
   border: 1.5px dashed rgba(255, 220, 200, 0.3);
 }
 
-.seal-button:hover .seal-wax { box-shadow: 0 8px 30px rgba(180, 100, 80, 0.45); }
+.seal-button:hover .seal-wax {
+  box-shadow:
+    0 16px 38px rgba(160, 80, 50, 0.55),
+    inset 0 -3px 6px rgba(0,0,0,0.12),
+    0 0 0 8px rgba(200, 150, 130, 0.25);
+}
 
 .seal-inner {
-  width: 54px; height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: linear-gradient(135deg, #C56B52, #A44A30);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15), 0 1px 2px rgba(255,200,180,0.3);
+  box-shadow:
+    inset 0 2px 5px rgba(0,0,0,0.2),
+    0 1px 2px rgba(255,200,180,0.3);
 }
 
 .seal-monogram {
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   color: #FCE8DD;
   letter-spacing: 1px;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  user-select: none;
+  pointer-events: none;
 }
 
-.seal-amp { font-style: italic; font-size: 1rem; margin: 0 1px; }
+.seal-amp {
+  font-style: italic;
+  font-size: 1rem;
+  margin: 0 1px;
+  pointer-events: none;
+}
 
-.seal-hint {
+.seal-label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #8C6F5E;
   font-weight: 400;
+}
+
+/* Боковые грани */
+.envelope-edge-left {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to right, rgba(0,0,0,0.07), transparent);
+  border-radius: 3px 0 0 3px;
+  z-index: 5;
+}
+
+.envelope-edge-right {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to left, rgba(0,0,0,0.07), transparent);
+  border-radius: 0 3px 3px 0;
+  z-index: 5;
+}
+
+.envelope-edge-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  right: 3px;
+  height: 3px;
+  background: linear-gradient(to top, rgba(0,0,0,0.07), transparent);
+  border-radius: 0 0 3px 3px;
+  z-index: 5;
+}
+
+/* Подсказка */
+.envelope-hint {
+  margin-top: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #B8A392;
+  animation: hintFade 2.5s ease-in-out infinite;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+/* Анимации */
+@keyframes envelopeEntry {
+  0% {
+    opacity: 0;
+    transform: scale(0.75) translateY(50px) rotate(-2deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-8px) rotate(0.5deg);
+  }
+  70% {
+    transform: scale(0.98) translateY(2px) rotate(-0.2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes sealPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes hintFade {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .envelope-wrapper {
+    height: 290px;
+  }
+  
+  .envelope-flap {
+    height: 165px;
+  }
+  
+  .envelope-text-title {
+    font-size: 1.5rem;
+  }
+  
+  .envelope-text-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+  }
+  
+  .seal-wax {
+    width: 62px;
+    height: 62px;
+  }
+  
+  .seal-inner {
+    width: 46px;
+    height: 46px;
+  }
+  
+  .seal-monogram {
+    font-size: 1.15rem;
+  }
+  
+  .envelope-hint {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
 }
 
 /* ===== МУЗЫКА ===== */
@@ -448,19 +658,6 @@ h2 {
   box-shadow: var(--soft-shadow);
 }
 
-.calendar-wrapper { display: flex; justify-content: center; }
-
-.calendar-frame {
-  background: #FEFCF9;
-  border-radius: 24px;
-  border: 1px solid rgba(200, 170, 140, 0.25);
-  max-width: 420px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Карточка календаря с фоновой картинкой */
 .calendar-card-bg {
   background-image: url('images/calendar-bg.jpg');
   background-size: cover;
@@ -484,10 +681,7 @@ h2 {
   z-index: 1;
 }
 
-.calendar-wrapper {
-  display: flex;
-  justify-content: center;
-}
+.calendar-wrapper { display: flex; justify-content: center; }
 
 .calendar-frame {
   background: white;
@@ -550,7 +744,6 @@ h2 {
   border-radius: 20px;
 }
 
-/* Место */
 .venue-photo-wrapper {
   position: relative;
   border-radius: 20px;
@@ -593,31 +786,90 @@ h2 {
 
 /* Тайминг */
 .timeline-list {
-  max-width: 500px;
+  max-width: 580px;
   margin: 0 auto;
   background: rgba(255, 250, 240, 0.7);
   backdrop-filter: blur(3px);
   border-radius: 48px;
-  padding: 0.8rem 0;
+  padding: 0.5rem 0;
 }
 
 .timeline-item {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   padding: 1.2rem 2rem;
-  border-bottom: 1px solid rgba(150, 120, 100, 0.15);
-  align-items: baseline;
+  border-bottom: 1px solid rgba(150, 120, 100, 0.12);
 }
 
-.timeline-item:last-child { border: none; }
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+.timeline-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+}
+
+.timeline-icon svg {
+  display: block;
+}
 
 .time {
   font-weight: 700;
-  width: 85px;
+  width: 70px;
   color: #4A6A4E;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
-.event { font-weight: 400; color: #2C2A27; flex: 1; }
+.event {
+  font-weight: 500;
+  color: #2C2A27;
+  font-size: 1rem;
+}
+
+.event-desc {
+  width: 100%;
+  padding-left: calc(70px + 40px + 0.6rem);
+  font-size: 0.85rem;
+  color: #8C7B6E;
+  margin-top: 0.25rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Адаптив для тайминга */
+@media (max-width: 600px) {
+  .timeline-item {
+    padding: 1rem 1.2rem;
+  }
+  
+  .timeline-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 0.5rem;
+  }
+  
+  .time {
+    width: 55px;
+    font-size: 1rem;
+  }
+  
+  .event {
+    font-size: 0.9rem;
+  }
+  
+  .event-desc {
+    padding-left: calc(55px + 32px + 0.5rem);
+    font-size: 0.78rem;
+  }
+}
 
 /* Дресс-код */
 .dresscode-content {
@@ -634,6 +886,7 @@ h2 {
   gap: 1rem;
   justify-content: center;
   margin: 1.8rem 0;
+  flex-wrap: wrap;
 }
 
 .color-dot {
@@ -666,14 +919,14 @@ h2 {
   flex: 1;
   min-width: 140px;
   max-width: 250px;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   background: #F5EFE8;
   border-radius: 20px;
   overflow: hidden;
   border: 2px solid #E8D9CC;
 }
 
-.outfit-item img { width: 100%; height: 100%; object-fit: cover; }
+.outfit-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .outfit-label {
   margin-top: 0.8rem;
@@ -722,7 +975,7 @@ h2 {
   margin-top: 1.5rem;
 }
 
-/* ===== ПОЖЕЛАНИЯ (оверлей прозрачнее на ~20%) ===== */
+/* ===== ПОЖЕЛАНИЯ ===== */
 .wishes-vertical-card {
   max-width: 580px;
   margin: 0 auto;
@@ -748,7 +1001,6 @@ h2 {
 .wishes-image-overlay {
   position: absolute;
   inset: 0;
-  /* Было: 50% → 95% | Стало: 30% → 75% (прозрачнее на ~20%) */
   background: linear-gradient(
     to bottom,
     rgba(245, 238, 228, 0.3) 0%,
@@ -845,6 +1097,49 @@ input:focus, textarea:focus {
 .success-icon { font-size: 2.8rem; display: block; }
 .hidden { display: none; }
 
+/* Строка из двух полей */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group-half {
+  flex: 1;
+}
+
+/* Дополнительные гости */
+.extra-guests-container {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #FBF5EF;
+  border-radius: 20px;
+  border: 1px solid rgba(200, 170, 140, 0.25);
+}
+
+.extra-guests-title {
+  font-weight: 500;
+  color: #5A4A3E;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.extra-guest-item {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.extra-guest-item input {
+  flex: 1;
+}
+
+.extra-guest-item .guest-label {
+  font-size: 0.8rem;
+  color: #8C6F5E;
+  margin-bottom: 0.2rem;
+}
+
 footer {
   background: #ECE2D8;
   text-align: center;
@@ -915,4 +1210,14 @@ footer {
   .wishes-image-frame { aspect-ratio: 2 / 3; }
   .wishes-text-overlay { padding: 2rem 1.5rem; }
   .calendar-content { padding: 1rem; }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .extra-guest-item {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
 }

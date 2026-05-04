@@ -9,52 +9,65 @@
 </head>
 <body>
 
-  <!-- ===== КОНВЕРТ (полный экран) ===== -->
-  <div class="envelope-overlay" id="envelopeOverlay">
-    <div class="envelope-fullscreen">
-      <!-- Кружевные рамки -->
-      <div class="lace-border lace-top"></div>
-      <div class="lace-border lace-bottom"></div>
-      <div class="lace-border lace-left"></div>
-      <div class="lace-border lace-right"></div>
-      <div class="lace-corner corner-tl"></div>
-      <div class="lace-corner corner-tr"></div>
-      <div class="lace-corner corner-bl"></div>
-      <div class="lace-corner corner-br"></div>
-
-      <!-- Конверт -->
-      <div class="envelope-main" id="envelopeMain">
-        <div class="envelope-front">
-          <div class="envelope-paper-texture"></div>
-          <div class="envelope-inner-lace-top"></div>
-          <div class="envelope-inner-lace-bottom"></div>
-          
-          <!-- Надпись «Приглашение на свадьбу» -->
-          <div class="envelope-invitation-text">
-            <span class="envelope-invitation-subtitle">Дорогие гости</span>
-            <h1 class="envelope-invitation-title">Приглашение<br>на свадьбу</h1>
-            <div class="envelope-invitation-divider"></div>
-            <p class="envelope-invitation-names">Валерии & Дмитрия</p>
-          </div>
-
-          <!-- Сургучная печать -->
-          <button class="seal-button" id="openInvitationBtn">
-            <div class="seal-wax">
-              <div class="seal-inner">
-                <span class="seal-monogram">В<span class="seal-amp">&</span>Д</span>
-              </div>
-            </div>
-            <span class="seal-hint">Открыть</span>
-          </button>
-        </div>
-
-        <!-- Крышка конверта -->
-        <div class="envelope-flap" id="envelopeFlap">
-          <div class="flap-lace"></div>
+  <!-- ===== КОНВЕРТ ===== -->
+<div class="envelope-overlay" id="envelopeOverlay">
+  <div class="envelope-fullscreen">
+    
+    <!-- Декоративные кружева по углам экрана -->
+    <div class="envelope-ornament ornament-tl"></div>
+    <div class="envelope-ornament ornament-tr"></div>
+    <div class="envelope-ornament ornament-bl"></div>
+    <div class="envelope-ornament ornament-br"></div>
+    
+    <!-- Конверт -->
+    <div class="envelope-wrapper" id="envelopeMain">
+      
+      <!-- Задняя стенка (видна при открытии) -->
+      <div class="envelope-back">
+        <div class="envelope-back-pattern"></div>
+      </div>
+      
+      <!-- Клапан -->
+      <div class="envelope-flap" id="envelopeFlap">
+        <div class="envelope-flap-inner">
+          <!-- Кружевной узор на клапане -->
+          <div class="flap-lace-top"></div>
+          <div class="flap-lace-pattern"></div>
+          <div class="flap-lace-bottom"></div>
         </div>
       </div>
+      
+      <!-- Тело конверта -->
+      <div class="envelope-body-front">
+        <!-- Текст "Приглашение" -->
+        <div class="envelope-text-top">
+          <span class="envelope-text-subtitle">Дорогие гости</span>
+          <h2 class="envelope-text-title">Приглашение<br>на свадьбу</h2>
+        </div>
+        
+        <!-- Кружевная полоса -->
+        <div class="envelope-lace-band"></div>
+      </div>
+      
+      <!-- Сургучная печать (на стыке клапана и тела) -->
+      <button class="seal-button" id="openInvitationBtn">
+        <div class="seal-wax">
+          <div class="seal-inner">
+            <span class="seal-monogram">В<span class="seal-amp">&</span>Д</span>
+          </div>
+        </div>
+        <span class="seal-label">Открыть</span>
+      </button>
+      
+      <!-- Боковые грани -->
+      <div class="envelope-edge-left"></div>
+      <div class="envelope-edge-right"></div>
+      <div class="envelope-edge-bottom"></div>
     </div>
+    
+    <p class="envelope-hint">Нажмите на печать</p>
   </div>
+</div>
 
   <!-- Аудио -->
   <audio id="bgMusic" loop preload="auto">
@@ -134,28 +147,52 @@
   </section>
 
   <!-- Тайминг дня (сокращённый) -->
-  <section class="section fade-section" id="timeline">
-    <div class="container">
-      <div class="section-header">
-        <h2>Программа дня</h2>
-        <div class="divider"></div>
+  <!-- Тайминг дня -->
+<section class="section fade-section" id="timeline">
+  <div class="container">
+    <div class="section-header">
+      <h2>Программа дня</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="timeline-list">
+      <div class="timeline-item">
+        <span class="timeline-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2C9.58 2 6 5.58 6 10c0 6 8 14 8 14s8-8 8-14c0-4.42-3.58-8-8-8z" stroke="#8CAA90" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14" cy="10" r="2.5" stroke="#8CAA90" stroke-width="1.5"/>
+          </svg>
+        </span>
+        <span class="time">15:00</span>
+        <span class="event">Сбор гостей</span>
+        <span class="event-desc">Лёгкий фуршет и приветственные напитки</span>
       </div>
-      <div class="timeline-list">
-        <div class="timeline-item">
-          <span class="time">15:00</span>
-          <span class="event">Сбор гостей. Фуршет</span>
-        </div>
-        <div class="timeline-item">
-          <span class="time">16:00</span>
-          <span class="event">Начало банкета</span>
-        </div>
-        <div class="timeline-item">
-          <span class="time">23:00</span>
-          <span class="event">Окончание вечера</span>
-        </div>
+      <div class="timeline-item">
+        <span class="timeline-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 8h18M5 14h18M5 20h18" stroke="#8CAA90" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 3v3M18 3v3M10 23v3M18 23v3" stroke="#8CAA90" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M9 8l-2 6h14l-2-6H9z" stroke="#8CAA90" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="14" cy="8" r="0.8" fill="#8CAA90"/>
+          </svg>
+        </span>
+        <span class="time">16:00</span>
+        <span class="event">Начало банкета</span>
+        <span class="event-desc">Торжественный ужин, тосты и поздравления</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="9" stroke="#8CAA90" stroke-width="1.5"/>
+            <path d="M10 14l3 3 5-6" stroke="#8CAA90" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="time">23:00</span>
+        <span class="event">Окончание вечера</span>
+        <span class="event-desc">Финальный танец и праздничный фейерверк</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Дресс-код -->
   <section class="section fade-section" id="dresscode">
@@ -165,7 +202,7 @@
         <div class="divider"></div>
       </div>
       <div class="dresscode-content">
-        <p>Мы будем рады видеть вас в элегантных образах в нежной гамме. Вдохновение — сад цветущих пионов.</p>
+        <p>Нам будет особенно приятно, если вы поддержите цветовую гамму нашего торжества. Пусть ваши образы станут частью единой картины этого вечера.</p>
         <div class="color-palette">
   <!-- 1. Тёплый нюд -->
   <span class="color-dot" style="background: #E9C2A6;"></span>
@@ -194,21 +231,21 @@
                 <div class="outfit-item"><img src="images/outfit-woman-1.jpg" alt="Женский образ" onerror="this.style.display='none'"></div>
                 <div class="outfit-item"><img src="images/outfit-man-1.jpg" alt="Мужской образ" onerror="this.style.display='none'"></div>
               </div>
-              <p class="outfit-label">Нежная классика</p>
+              <p class="outfit-label">Нежная классика — нюдовые и кремовые оттенки, классический силуэт</p>
             </div>
             <div class="carousel-slide">
               <div class="outfit-collage">
                 <div class="outfit-item"><img src="images/outfit-woman-2.jpg" alt="Женский образ" onerror="this.style.display='none'"></div>
                 <div class="outfit-item"><img src="images/outfit-man-2.jpg" alt="Мужской образ" onerror="this.style.display='none'"></div>
               </div>
-              <p class="outfit-label">Пастельная элегантность</p>
+              <p class="outfit-label">Пастельная элегантность — пыльная роза, олива, приглушённый голубой</p>
             </div>
             <div class="carousel-slide">
               <div class="outfit-collage">
                 <div class="outfit-item"><img src="images/outfit-woman-3.jpg" alt="Женский образ" onerror="this.style.display='none'"></div>
                 <div class="outfit-item"><img src="images/outfit-man-3.jpg" alt="Мужской образ" onerror="this.style.display='none'"></div>
               </div>
-              <p class="outfit-label">Садовый шик</p>
+              <p class="outfit-label">Садовый шик — лёгкие ткани, естественные цвета, удобная обувь.</p>
             </div>
           </div>
           <button class="carousel-btn carousel-prev" id="carouselPrev">‹</button>
@@ -217,7 +254,7 @@
             <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
           </div>
         </div>
-        <p class="dress-note">🌿 Просим воздержаться от ярких красных и чёрных оттенков. Элегантность и комфорт — главное правило.</p>
+        <p class="dress-note">🌿 Пожалуйста, избегайте ярко-красного и чёрного. Уют и элегантность — всё, что нужно.</p>
       </div>
     </div>
   </section>
@@ -234,11 +271,8 @@
           <img src="images/wishes-bg.jpg" alt="Фон пожеланий" class="wishes-full-image" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(180deg, #f9f0e8, #f0e2d5, #e8d5c4)';">
           <div class="wishes-image-overlay"></div>
           <div class="wishes-text-overlay">
-            <p>Ваше присутствие на нашей свадьбе — самый лучший подарок. Если вы всё же желаете нас порадовать, 
-            мы будем благодарны за конверты с тёплыми пожеланиями для нашего семейного бюджета. 
-            Или выберите что-то из нашего <span class="wishes-highlight">виш-листа</span> — спросите нас лично ✨</p>
-            <div class="wishes-emoji">💝 ☁️ 🌿</div>
-          </div>
+            <p>Ваше присутствие на нашей свадьбе — самый дорогой подарок. Если вы хотите выразить свою любовь и заботу иначе — мы будем благодарны за конверты с тёплыми пожеланиями для нашего общего будущего. А если хочется выбрать что-то особенное — у нас есть виш-лист. Напишите нам, и мы поделимся идеями 💝</p>
+            </div>
         </div>
       </div>
     </div>
@@ -246,50 +280,69 @@
 
   <!-- RSVP -->
   <section class="section fade-section" id="rsvp">
-    <div class="container">
-      <div class="section-header">
-        <h2>Пожалуйста, подтвердите присутствие</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="form-container rsvp-form-bg">
-        <form id="rsvpForm" novalidate>
-          <div class="form-group">
-            <label for="name">Ваше имя *</label>
+  <div class="container">
+    <div class="section-header">
+      <h2>Пожалуйста, подтвердите присутствие</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="form-container rsvp-form-bg">
+      <form id="rsvpForm" novalidate>
+        <!-- Имя и Фамилия основного гостя -->
+        <div class="form-row">
+          <div class="form-group form-group-half">
+            <label for="lastName">Фамилия *</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Например, Иванова" required>
+            <div class="error-msg" id="lastNameError"></div>
+          </div>
+          <div class="form-group form-group-half">
+            <label for="name">Имя *</label>
             <input type="text" id="name" name="name" placeholder="Например, Екатерина" required>
             <div class="error-msg" id="nameError"></div>
           </div>
-          <div class="form-group radio-group">
-            <label>Вы будете присутствовать? *</label>
-            <div class="radio-options">
-              <label class="radio-label"><input type="radio" name="attending" value="yes" required> Да, с радостью</label>
-              <label class="radio-label"><input type="radio" name="attending" value="no"> К сожалению, нет</label>
-            </div>
-            <div class="error-msg" id="attendingError"></div>
-          </div>
-          <div class="form-group">
-            <label for="guests">Количество гостей (включая вас) *</label>
-            <input type="number" id="guests" name="guests" min="1" max="6" value="1" required>
-            <div class="error-msg" id="guestsError"></div>
-          </div>
-          <div class="form-group">
-            <label for="comment">Комментарий или пожелание</label>
-            <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, особые пожелания, тёплые слова..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Отправить ответ</button>
-        </form>
-        <div id="rsvpSuccess" class="rsvp-success hidden">
-          <span class="success-icon">✨</span>
-          <h3>Спасибо, дорогой гость!</h3>
-          <p>Ваш ответ успешно получен. Мы свяжемся с вами за пару дней до торжества ❤️</p>
         </div>
+
+        <div class="form-group radio-group">
+          <label>Вы будете присутствовать? *</label>
+          <div class="radio-options">
+            <label class="radio-label"><input type="radio" name="attending" value="yes" required> Да, с радостью</label>
+            <label class="radio-label"><input type="radio" name="attending" value="no"> К сожалению, нет</label>
+          </div>
+          <div class="error-msg" id="attendingError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="guests">Количество гостей (включая вас) *</label>
+          <input type="number" id="guests" name="guests" min="1" max="6" value="1" required>
+          <div class="error-msg" id="guestsError"></div>
+        </div>
+
+        <!-- Блок дополнительных гостей -->
+        <div id="extraGuestsContainer" class="extra-guests-container hidden">
+          <p class="extra-guests-title">Дополнительные гости</p>
+          <div id="extraGuestsList"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="comment">Комментарий или пожелание</label>
+          <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, особые пожелания, тёплые слова..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Отправить ответ</button>
+      </form>
+
+      <div id="rsvpSuccess" class="rsvp-success hidden">
+        <span class="success-icon">✨</span>
+        <h3>Спасибо, дорогой гость!</h3>
+        <p>Ваш ответ успешно получен. Мы свяжемся с вами за пару дней до торжества ❤️</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <footer class="footer">
     <div class="container">
-      <p>С нетерпением ждём встречи с вами ✨ 21.08.2026</p>
-      <p class="copyright">Свадебный день, наполненный любовью</p>
+      <p>Этот день мы запомним навсегда. Спасибо, что вы с нами.</p>
+      <p class="copyright">Одна история на двоих. И вы в ней 🤍</p>
     </div>
   </footer>
 
