@@ -400,7 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   attendingRadios.forEach(r => r.addEventListener('change', () => { if (attendingError) attendingError.innerText = ''; }));
   if (guestsInput) guestsInput.addEventListener('input', () => { if (guestsError) guestsError.innerText = ''; });
-});
 
   // Универсальная кнопка добавления в календарь
   var calendarBtn = document.getElementById('addToCalendarBtn');
