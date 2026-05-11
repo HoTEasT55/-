@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var greetingText = '';
 
       if (namesArray.length === 1) {
-        greetingText = 'Дорогой ' + namesArray[0] + '!';
+        greetingText = 'Дорогой(ая) ' + namesArray[0] + '!';
       } else if (namesArray.length === 2) {
         greetingText = 'Дорогие ' + namesArray[0] + ' и ' + namesArray[1] + '!';
       } else {
@@ -169,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---- АНИМАЦИЯ ПОЯВЛЕНИЯ ----
   // ---- АНИМАЦИЯ ПОЯВЛЕНИЯ ----
   const fadeElements = document.querySelectorAll('.fade-section');
   const observer = new IntersectionObserver((entries) => {
