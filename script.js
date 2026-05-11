@@ -135,7 +135,41 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
   }
+  
+  // ---- ИМЕННЫЕ ПРИГЛАШЕНИЯ ----
+  var urlParams = new URLSearchParams(window.location.search);
+  var rawNames = urlParams.get('names') || urlParams.get('name');
 
+  if (rawNames) {
+    var decodedNames = decodeURIComponent(rawNames);
+    var namesArray = decodedNames.split(',').map(function(n) {
+      return n.trim();
+    }).filter(function(n) {
+      return n.length > 0;
+    });
+
+    var greeting = document.getElementById('personalGreeting');
+    
+    if (greeting && namesArray.length > 0) {
+      var greetingText = '';
+
+      if (namesArray.length === 1) {
+        greetingText = 'Дорогой ' + namesArray[0] + '!';
+      } else if (namesArray.length === 2) {
+        greetingText = 'Дорогие ' + namesArray[0] + ' и ' + namesArray[1] + '!';
+      } else {
+        var allButLast = namesArray.slice(0, -1).join(', ');
+        greetingText = 'Дорогие ' + allButLast + ' и ' + namesArray[namesArray.length - 1] + '!';
+      }
+
+      greeting.innerHTML = greetingText + '<br><br>' +
+        'Мы бесконечно счастливы, что вы станете частью нашего самого важного дня. ' +
+        'Сердце переполняется радостью, когда мы думаем о предстоящей встрече. ' +
+        'Приглашаем вас разделить с нами магию любви, нежности и настоящего счастья.';
+    }
+  }
+
+  // ---- АНИМАЦИЯ ПОЯВЛЕНИЯ ----
   // ---- АНИМАЦИЯ ПОЯВЛЕНИЯ ----
   const fadeElements = document.querySelectorAll('.fade-section');
   const observer = new IntersectionObserver((entries) => {
