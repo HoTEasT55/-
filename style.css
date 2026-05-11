@@ -658,21 +658,20 @@ h2 {
 .calendar-add-btn {
   display: block;
   text-align: center;
-  margin-top: 1.2rem;
+  margin: 1.2rem auto 0;
+  width: fit-content;
   font-size: 0.85rem;
-  color: #6B5A4E;
+  color: #4A3A2E;
   font-weight: 500;
-  background: #F5EFE8;
-  padding: 0.6rem;
-  border-radius: 20px;
+  background: #F3E8D9;
+  padding: 0.6rem 1.5rem;
+  border-radius: 24px;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 1px solid rgba(200, 170, 140, 0.2);
 }
 
 .calendar-add-btn:hover {
-  background: #EDE2D5;
-  border-color: rgba(200, 170, 140, 0.4);
+  background: #EAD9C6;
   transform: translateY(-1px);
 }
 
