@@ -655,15 +655,25 @@ h2 {
   50% { transform: translateX(-50%) translateY(-3px); }
 }
 
-.calendar-event-time {
+.calendar-add-btn {
+  display: block;
   text-align: center;
   margin-top: 1.2rem;
   font-size: 0.85rem;
   color: #6B5A4E;
   font-weight: 500;
   background: #F5EFE8;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(200, 170, 140, 0.2);
+}
+
+.calendar-add-btn:hover {
+  background: #EDE2D5;
+  border-color: rgba(200, 170, 140, 0.4);
+  transform: translateY(-1px);
 }
 
 .venue-photo-wrapper {
