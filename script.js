@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let musicStarted = false;
 
   function openEnvelope() {
-  if (!musicStarted) {
+  console.log('Конверт открывается!');
+    if (!musicStarted) {
     bgMusic.volume = 0.35;
     bgMusic.play().then(() => {
       musicToggle.textContent = '🎵';
