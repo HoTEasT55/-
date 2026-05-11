@@ -401,3 +401,44 @@ document.addEventListener('DOMContentLoaded', () => {
   attendingRadios.forEach(r => r.addEventListener('change', () => { if (attendingError) attendingError.innerText = ''; }));
   if (guestsInput) guestsInput.addEventListener('input', () => { if (guestsError) guestsError.innerText = ''; });
 });
+
+  // Универсальная кнопка добавления в календарь
+  var calendarBtn = document.getElementById('addToCalendarBtn');
+  if (calendarBtn) {
+    calendarBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      var eventTitle = 'Свадьба Валерии и Дмитрия';
+      var eventDetails = 'Сбор гостей в 13:00. Церемония в 14:30. Банкетный зал «Зеленый Берег»';
+      var eventLocation = 'городской округ Лобня, Московская область';
+      var startDate = '20260821T100000Z';
+      var endDate = '20260821T200000Z';
+      
+      var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+      
+      if (isIOS) {
+        var icsContent = 'BEGIN:VCALENDAR\n' +
+          'VERSION:2.0\n' +
+          'PRODID:-//Wedding//RU\n' +
+          'BEGIN:VEVENT\n' +
+          'DTSTART:' + startDate + '\n' +
+          'DTEND:' + endDate + '\n' +
+          'SUMMARY:' + encodeURIComponent(eventTitle) + '\n' +
+          'DESCRIPTION:' + encodeURIComponent(eventDetails) + '\n' +
+          'LOCATION:' + encodeURIComponent(eventLocation) + '\n' +
+          'END:VEVENT\n' +
+          'END:VCALENDAR';
+        
+        window.location.href = 'data:text/calendar;charset=utf-8,' + escape(icsContent);
+      } else {
+        var googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+          '&dates=' + startDate + '%2F' + endDate +
+          '&text=' + encodeURIComponent(eventTitle) +
+          '&details=' + encodeURIComponent(eventDetails) +
+          '&location=' + encodeURIComponent(eventLocation) +
+          '&ctz=Europe%2FMoscow';
+        
+        window.open(googleUrl, '_blank');
+      }
+    });
+  }
