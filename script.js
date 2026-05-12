@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (spinner) spinner.classList.remove('hidden');
 
     const data = collectFormData();
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvv8oqaT1vjprhgAn4ruWKjMLYANSB-vqKv81UZnapgW9b-9lxkmz4XjwKmiywxRZ2Cw/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxy0gV3r8rRoFlGPXjjAnWC9jTzZxtWSHUL-bWT4xkcblpk9B2eN3ZWXBsrCSYI3SnFyw/exec';
 
     try {
       await fetch(SCRIPT_URL, {
