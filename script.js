@@ -167,6 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'Сердце переполняется радостью, когда мы думаем о предстоящей встрече. ' +
         'Приглашаем вас разделить с нами магию любви, нежности и настоящего счастья.';
     }
+  // Сохраняем имена в скрытое поле
+    var hiddenField = document.getElementById('invitationNames');
+    if (hiddenField) {
+      hiddenField.value = decodedNames;
+    }
   }
 
   // ---- АНИМАЦИЯ ПОЯВЛЕНИЯ ----
@@ -363,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function collectFormData() {
     const data = {
+      invitationNames: document.getElementById('invitationNames')?.value || '',
       lastName: lastNameInput?.value.trim() || '',
       name: nameInput?.value.trim() || '',
       attending: document.querySelector('input[name="attending"]:checked')?.value === 'yes' ? 'Да' : 'Нет',
