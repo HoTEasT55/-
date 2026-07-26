@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
         '&dates=20260821T100000Z%2F20260821T200000Z' +
         '&text=' + encodeURIComponent('Свадьба Валерии и Дмитрия') +
-        '&details=' + encodeURIComponent('Сбор гостей в 13:00. Церемония в 14:00. Банкетный зал «Зеленый Берег»') +
+        '&details=' + encodeURIComponent('Сбор гостей в 14:00. Церемония в 15:00. Банкетный зал «Зеленый Берег»') +
         '&location=' + encodeURIComponent('городской округ Лобня, Московская область') +
         '&ctz=Europe%2FMoscow';
       
