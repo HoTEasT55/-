@@ -279,7 +279,7 @@
     </div>
   </section>
 
- <!-- RSVP -->
+  <!-- RSVP -->
 <section class="section fade-section" id="rsvp">
   <div class="container">
     <div class="section-header">
@@ -290,14 +290,15 @@
     <!-- Уведомление -->
     <div class="rsvp-notice">
       <span class="rsvp-notice-icon">🤍</span>
-      <p>Дорогие гости, этот вечер мы создаём с огромной любовью и вниманием к каждому из вас. Нам хочется, чтобы вы почувствовали себя по-настоящему свободными: танцевали до утра, смеялись от души и никуда не спешили.Чтобы вы могли полностью расслабиться и насладиться атмосферой праздника, мы решили сделать его взрослым. Пожалуйста, заранее позаботьтесь о том, с кем оставить ваших детей, — пусть этот вечер станет вашим маленьким романтичным путешествием.</p>
+      <p>Дорогие гости, этот вечер мы создаём с огромной любовью и вниманием к каждому из вас. Нам хочется, чтобы вы почувствовали себя по-настоящему свободными: танцевали до утра, смеялись от души и никуда не спешили. Чтобы вы могли полностью расслабиться и насладиться атмосферой праздника, мы решили сделать его взрослым. Пожалуйста, заранее позаботьтесь о том, с кем оставить ваших детей, — пусть этот вечер станет вашим маленьким романтичным путешествием.</p>
     </div>
 
     <div class="form-container rsvp-form-bg">
       <form id="rsvpForm" novalidate>
         <!-- Скрытое поле: имя из ссылки -->
         <input type="hidden" id="invitationNames" name="invitationNames" value="">
-        <!-- Имя и Фамилия основного гостя -->
+        
+        <!-- Имя и Фамилия -->
         <div class="form-row">
           <div class="form-group form-group-half">
             <label for="lastName">Фамилия *</label>
@@ -320,31 +321,13 @@
           <div class="error-msg" id="attendingError"></div>
         </div>
 
-        <div class="form-group">
-          <label for="guests">Количество гостей (включая вас) *</label>
-          <select id="guests" name="guests" required>
-            <option value="1">1 гость</option>
-            <option value="2">2 гостя</option>
-            <option value="3">3 гостя</option>
-            <option value="4">4 гостя</option>
-            <option value="5">5 гостей</option>
-            <option value="6">6 гостей</option>
-          </select>
-          <div class="error-msg" id="guestsError"></div>
+        <!-- Причина отказа (показывается только при выборе "Нет") -->
+        <div class="form-group hidden" id="declineReasonGroup">
+          <label for="declineReason">Причина отказа</label>
+          <textarea id="declineReason" name="declineReason" rows="2" placeholder="Если хотите, укажите причину..."></textarea>
         </div>
 
-        <!-- Блок дополнительных гостей -->
-        <div id="extraGuestsContainer" class="extra-guests-container hidden">
-          <p class="extra-guests-title">Дополнительные гости</p>
-          <div id="extraGuestsList"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="comment">Комментарий или пожелание</label>
-          <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, особые пожелания, тёплые слова..."></textarea>
-        </div>
-
-               <!-- Спиннер загрузки -->
+        <!-- Спиннер загрузки -->
         <div id="submitSpinner" class="submit-spinner hidden">
           <span class="spinner"></span>
           <span>Отправляем...</span>
@@ -353,10 +336,18 @@
         <button type="submit" class="btn btn-primary btn-full">Отправить ответ</button>
       </form>
 
-      <div id="rsvpSuccess" class="rsvp-success hidden">
+      <!-- Успех: Да -->
+      <div id="rsvpSuccessYes" class="rsvp-success hidden">
         <span class="success-icon">✨</span>
         <h3>Спасибо, дорогой гость!</h3>
-        <p>Ваш ответ успешно получен. Мы свяжемся с вами за месяц до дня торжества ❤️</p>
+        <p>Ваш ответ успешно получен. Мы будем ждать вас в назначенный день ❤️</p>
+      </div>
+
+      <!-- Успех: Нет -->
+      <div id="rsvpSuccessNo" class="rsvp-success hidden">
+        <span class="success-icon">✨</span>
+        <h3>Спасибо, дорогой гость!</h3>
+        <p>Ваш ответ успешно получен. Жаль, что не сможете присутствовать, но мы вас всё равно любим ❤️</p>
       </div>
     </div>
   </div>
