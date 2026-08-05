@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Сердце переполняется радостью, когда мы думаем о предстоящей встрече. ' +
         'Приглашаем вас разделить с нами магию любви, нежности и настоящего счастья.';
     }
-  // Сохраняем имена в скрытое поле
+    // Сохраняем имена в скрытое поле
     var hiddenField = document.getElementById('invitationNames');
     if (hiddenField) {
       hiddenField.value = decodedNames;
@@ -185,71 +185,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- ФОРМА RSVP ----
   const form = document.getElementById('rsvpForm');
-  const successDiv = document.getElementById('rsvpSuccess');
+  const successDivYes = document.getElementById('rsvpSuccessYes');
+  const successDivNo = document.getElementById('rsvpSuccessNo');
   const nameInput = document.getElementById('name');
   const lastNameInput = document.getElementById('lastName');
   const attendingRadios = document.querySelectorAll('input[name="attending"]');
-  const guestsInput = document.getElementById('guests');
+  const declineReasonGroup = document.getElementById('declineReasonGroup');
+  const declineReasonInput = document.getElementById('declineReason');
   const nameError = document.getElementById('nameError');
   const lastNameError = document.getElementById('lastNameError');
   const attendingError = document.getElementById('attendingError');
-  const guestsError = document.getElementById('guestsError');
-  const extraGuestsContainer = document.getElementById('extraGuestsContainer');
-  const extraGuestsList = document.getElementById('extraGuestsList');
+
+  // Показывать/скрывать причину отказа
+  attendingRadios.forEach(r => {
+    r.addEventListener('change', () => {
+      const selectedValue = document.querySelector('input[name="attending"]:checked')?.value;
+      if (selectedValue === 'no') {
+        declineReasonGroup.classList.remove('hidden');
+      } else {
+        declineReasonGroup.classList.add('hidden');
+        if (declineReasonInput) declineReasonInput.value = '';
+      }
+    });
+  });
 
   function clearFieldErrors() {
     if (nameError) nameError.innerText = '';
     if (lastNameError) lastNameError.innerText = '';
     if (attendingError) attendingError.innerText = '';
-    if (guestsError) guestsError.innerText = '';
-
-    for (let i = 2; i <= 6; i++) {
-      const guestNameField = document.querySelector(`input[name="guest${i}Name"]`);
-      const guestLastNameField = document.querySelector(`input[name="guest${i}LastName"]`);
-      if (guestNameField) {
-        guestNameField.style.borderColor = '#E3D9D0';
-        guestNameField.style.boxShadow = 'none';
-      }
-      if (guestLastNameField) {
-        guestLastNameField.style.borderColor = '#E3D9D0';
-        guestLastNameField.style.boxShadow = 'none';
-      }
-      const errorEl = document.getElementById(`guest${i}Error`);
-      if (errorEl) errorEl.remove();
-    }
-  }
-
-  function updateExtraGuests(count) {
-    if (!extraGuestsList || !extraGuestsContainer) return;
-    const numGuests = parseInt(count, 10) || 1;
-    extraGuestsList.innerHTML = '';
-    if (numGuests > 1) {
-      extraGuestsContainer.classList.remove('hidden');
-      for (let i = 2; i <= numGuests; i++) {
-        const div = document.createElement('div');
-        div.className = 'extra-guest-item';
-        div.innerHTML = `
-          <div style="flex:1">
-            <label class="guest-label">Гость ${i} — Имя</label>
-            <input type="text" name="guest${i}Name" placeholder="Имя">
-          </div>
-          <div style="flex:1">
-            <label class="guest-label">Гость ${i} — Фамилия</label>
-            <input type="text" name="guest${i}LastName" placeholder="Фамилия">
-          </div>
-        `;
-        extraGuestsList.appendChild(div);
-      }
-    } else {
-      extraGuestsContainer.classList.add('hidden');
-    }
-  }
-
-    if (guestsInput) {
-    guestsInput.addEventListener('change', () => {
-      updateExtraGuests(guestsInput.value);
-    });
-    updateExtraGuests(guestsInput.value);
   }
 
   function validateForm() {
@@ -279,116 +242,21 @@ document.addEventListener('DOMContentLoaded', () => {
       isValid = false;
     }
 
-    let guestsVal = parseInt(guestsInput?.value, 10);
-    if (isNaN(guestsVal) || guestsVal < 1) {
-      if (guestsError) guestsError.innerText = 'Минимум 1 гость';
-      isValid = false;
-    } else if (guestsVal > 6) {
-      if (guestsError) guestsError.innerText = 'Максимум 6 гостей';
-      isValid = false;
-    }
-
-    if (guestsVal > 1) {
-      for (let i = 2; i <= guestsVal; i++) {
-        const guestNameField = document.querySelector(`input[name="guest${i}Name"]`);
-        const guestLastNameField = document.querySelector(`input[name="guest${i}LastName"]`);
-
-        const guestName = guestNameField?.value.trim() || '';
-        const guestLastName = guestLastNameField?.value.trim() || '';
-
-        if (guestName === '' && guestLastName === '') {
-          if (guestNameField) {
-            guestNameField.style.borderColor = '#c06c54';
-            guestNameField.style.boxShadow = '0 0 0 2px rgba(192, 108, 84, 0.15)';
-          }
-          if (guestLastNameField) {
-            guestLastNameField.style.borderColor = '#c06c54';
-            guestLastNameField.style.boxShadow = '0 0 0 2px rgba(192, 108, 84, 0.15)';
-          }
-          const existingError = document.getElementById(`guest${i}Error`);
-          if (existingError) {
-            existingError.innerText = 'Укажите имя и фамилию гостя';
-          } else if (guestNameField?.parentElement) {
-            const errorSpan = document.createElement('span');
-            errorSpan.id = `guest${i}Error`;
-            errorSpan.className = 'error-msg';
-            errorSpan.innerText = 'Укажите имя и фамилию гостя';
-            guestNameField.parentElement.appendChild(errorSpan);
-          }
-          isValid = false;
-        } else if (guestName === '') {
-          if (guestNameField) {
-            guestNameField.style.borderColor = '#c06c54';
-            guestNameField.style.boxShadow = '0 0 0 2px rgba(192, 108, 84, 0.15)';
-          }
-          const existingError = document.getElementById(`guest${i}Error`);
-          if (!existingError && guestNameField?.parentElement) {
-            const errorSpan = document.createElement('span');
-            errorSpan.id = `guest${i}Error`;
-            errorSpan.className = 'error-msg';
-            errorSpan.innerText = 'Укажите имя гостя';
-            guestNameField.parentElement.appendChild(errorSpan);
-          } else if (existingError) {
-            existingError.innerText = 'Укажите имя гостя';
-          }
-          isValid = false;
-        } else if (guestLastName === '') {
-          if (guestLastNameField) {
-            guestLastNameField.style.borderColor = '#c06c54';
-            guestLastNameField.style.boxShadow = '0 0 0 2px rgba(192, 108, 84, 0.15)';
-          }
-          const existingError = document.getElementById(`guest${i}Error`);
-          if (!existingError && guestNameField?.parentElement) {
-            const errorSpan = document.createElement('span');
-            errorSpan.id = `guest${i}Error`;
-            errorSpan.className = 'error-msg';
-            errorSpan.innerText = 'Укажите фамилию гостя';
-            guestNameField.parentElement.appendChild(errorSpan);
-          } else if (existingError) {
-            existingError.innerText = 'Укажите фамилию гостя';
-          }
-          isValid = false;
-        } else {
-          if (guestNameField) {
-            guestNameField.style.borderColor = '#E3D9D0';
-            guestNameField.style.boxShadow = 'none';
-          }
-          if (guestLastNameField) {
-            guestLastNameField.style.borderColor = '#E3D9D0';
-            guestLastNameField.style.boxShadow = 'none';
-          }
-          const existingError = document.getElementById(`guest${i}Error`);
-          if (existingError) existingError.remove();
-        }
-      }
-    }
-
     return isValid;
   }
 
   function collectFormData() {
-    const data = {
+    return {
       invitationNames: document.getElementById('invitationNames')?.value || '',
       lastName: lastNameInput?.value.trim() || '',
       name: nameInput?.value.trim() || '',
       attending: document.querySelector('input[name="attending"]:checked')?.value === 'yes' ? 'Да' : 'Нет',
-      guests: guestsInput?.value || '1',
-      comment: document.getElementById('comment')?.value.trim() || '',
-      extraGuests: []
+      declineReason: declineReasonInput?.value.trim() || '',
+      comment: ''
     };
-    const totalGuests = parseInt(data.guests, 10) || 1;
-    for (let i = 2; i <= totalGuests; i++) {
-      const nameField = document.querySelector(`input[name="guest${i}Name"]`);
-      const lastNameField = document.querySelector(`input[name="guest${i}LastName"]`);
-      data.extraGuests.push({
-        name: nameField?.value.trim() || '',
-        lastName: lastNameField?.value.trim() || ''
-      });
-    }
-    return data;
   }
 
-    let isSubmitting = false;
+  let isSubmitting = false;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -406,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (spinner) spinner.classList.remove('hidden');
 
     const data = collectFormData();
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxp-tBNlNz5QgfeTknmEYchpvVDqgsTV-vYq4iL0NT23EWbfnveaRcWatgbHQ20jZTYlA/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfPe4CevLozkLYYrmtlSs7nLgZ4W94Zlp6YGCLxwu3E2sQQ-KlBwORfQwnSiNppQ6w/exec';
 
     try {
       await fetch(SCRIPT_URL, {
@@ -420,7 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       form.classList.add('hidden');
-      successDiv.classList.remove('hidden');
+      if (data.attending === 'Да') {
+        successDivYes.classList.remove('hidden');
+      } else {
+        successDivNo.classList.remove('hidden');
+      }
       if (spinner) spinner.classList.add('hidden');
       
       console.log('Данные отправлены:', data);
@@ -439,9 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (input) input.addEventListener('input', () => clearFieldErrors());
   });
   attendingRadios.forEach(r => r.addEventListener('change', () => { if (attendingError) attendingError.innerText = ''; }));
-  if (guestsInput) guestsInput.addEventListener('input', () => { if (guestsError) guestsError.innerText = ''; });
 
-   // Кнопка добавления в календарь
+  // Кнопка добавления в календарь
   var calendarBtn = document.getElementById('addToCalendarBtn');
   if (calendarBtn) {
     calendarBtn.addEventListener('click', function(e) {
