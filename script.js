@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (spinner) spinner.classList.remove('hidden');
 
     const data = collectFormData();
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxp-tBNlNz5QgfeTknmEYchpvVDqgsTV-vYq4iL0NT23EWbfnveaRcWatgbHQ20jZTYlA/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfPe4CevLozkLYYrmtlSs7nLgZ4W94Zlp6YGCLxwu3E2sQQ-KlBwORfQwnSiNppQ6w/exec';
 
     try {
       await fetch(SCRIPT_URL, {
