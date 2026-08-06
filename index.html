@@ -279,7 +279,7 @@
     </div>
   </section>
 
-  <!-- RSVP -->
+   <!-- RSVP -->
 <section class="section fade-section" id="rsvp">
   <div class="container">
     <div class="section-header">
@@ -321,7 +321,19 @@
           <div class="error-msg" id="attendingError"></div>
         </div>
 
-        <!-- Причина отказа (показывается только при выборе "Нет") -->
+        <!-- Количество гостей — показывается только при выборе "Да" -->
+        <div class="form-group hidden" id="guestsGroup">
+          <label for="guests">Количество гостей (включая вас) *</label>
+          <select id="guests" name="guests" required>
+            <option value="1">1 гость</option>
+            <option value="2">2 гостя</option>
+            <option value="3">3 гостя</option>
+            <option value="4">4 гостя</option>
+          </select>
+          <div class="error-msg" id="guestsError"></div>
+        </div>
+
+        <!-- Причина отказа — показывается только при выборе "Нет" -->
         <div class="form-group hidden" id="declineReasonGroup">
           <label for="declineReason">Причина отказа</label>
           <textarea id="declineReason" name="declineReason" rows="2" placeholder="Если хотите, укажите причину..."></textarea>
