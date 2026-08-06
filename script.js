@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     envelopeOverlay.classList.add('closed');
   }, 2000);
-}
+  // Всплывающее уведомление об изменении тайминга
+  setTimeout(() => {
+    showTimelineAlert();
+  }, 2200);
+  }
 
   if (openBtn) {
     openBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openEnvelope(); });
@@ -343,5 +347,43 @@ document.addEventListener('DOMContentLoaded', () => {
       
       window.open(googleUrl, '_blank');
     });
+  }
+  function showTimelineAlert() {
+    // Создаём плашку-уведомление
+    const alert = document.createElement('div');
+    alert.style.cssText = `
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #C0392B;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 9999;
+      text-align: center;
+      max-width: 90vw;
+      box-shadow: 0 12px 30px rgba(192, 57, 43, 0.4);
+      animation: slideDown 0.4s ease, fadeOut 0.5s 8s ease forwards;
+      line-height: 1.5;
+    `;
+    alert.innerHTML = '⚠️ <b>ВНИМАНИЕ!</b><br>Уважаемые гости, изменился тайминг дня!<br>Все события сдвинулись на 1 час вперёд.<br>Пожалуйста, ознакомьтесь с разделом «Программа дня».';
+
+    document.body.appendChild(alert);
+
+    // Плавно прокручиваем к таймингу
+    setTimeout(() => {
+      const timeline = document.getElementById('timeline');
+      if (timeline) {
+        timeline.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 500);
+
+    // Удаляем через 8 секунд
+    setTimeout(() => {
+      if (alert.parentNode) alert.remove();
+    }, 8500);
   }
 });
