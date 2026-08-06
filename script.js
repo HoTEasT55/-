@@ -183,28 +183,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15 });
   fadeElements.forEach(el => observer.observe(el));
 
-  // ---- ФОРМА RSVP ----
+    // ---- ФОРМА RSVP ----
   const form = document.getElementById('rsvpForm');
   const successDivYes = document.getElementById('rsvpSuccessYes');
   const successDivNo = document.getElementById('rsvpSuccessNo');
   const nameInput = document.getElementById('name');
   const lastNameInput = document.getElementById('lastName');
   const attendingRadios = document.querySelectorAll('input[name="attending"]');
+  const guestsGroup = document.getElementById('guestsGroup');
+  const guestsInput = document.getElementById('guests');
   const declineReasonGroup = document.getElementById('declineReasonGroup');
   const declineReasonInput = document.getElementById('declineReason');
   const nameError = document.getElementById('nameError');
   const lastNameError = document.getElementById('lastNameError');
   const attendingError = document.getElementById('attendingError');
+  const guestsError = document.getElementById('guestsError');
 
-  // Показывать/скрывать причину отказа
+  // Переключение видимости полей при выборе Да/Нет
   attendingRadios.forEach(r => {
     r.addEventListener('change', () => {
       const selectedValue = document.querySelector('input[name="attending"]:checked')?.value;
-      if (selectedValue === 'no') {
-        declineReasonGroup.classList.remove('hidden');
-      } else {
+      if (selectedValue === 'yes') {
+        guestsGroup.classList.remove('hidden');
         declineReasonGroup.classList.add('hidden');
         if (declineReasonInput) declineReasonInput.value = '';
+      } else {
+        guestsGroup.classList.add('hidden');
+        declineReasonGroup.classList.remove('hidden');
       }
     });
   });
@@ -213,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nameError) nameError.innerText = '';
     if (lastNameError) lastNameError.innerText = '';
     if (attendingError) attendingError.innerText = '';
+    if (guestsError) guestsError.innerText = '';
   }
 
   function validateForm() {
@@ -242,16 +248,28 @@ document.addEventListener('DOMContentLoaded', () => {
       isValid = false;
     }
 
+    // Если выбрано «Да» — проверяем количество гостей
+    const attendingValue = document.querySelector('input[name="attending"]:checked')?.value;
+    if (attendingValue === 'yes') {
+      const guestsVal = parseInt(guestsInput?.value, 10);
+      if (isNaN(guestsVal) || guestsVal < 1) {
+        if (guestsError) guestsError.innerText = 'Укажите количество гостей';
+        isValid = false;
+      }
+    }
+
     return isValid;
   }
 
   function collectFormData() {
+    const attendingValue = document.querySelector('input[name="attending"]:checked')?.value;
     return {
       invitationNames: document.getElementById('invitationNames')?.value || '',
       lastName: lastNameInput?.value.trim() || '',
       name: nameInput?.value.trim() || '',
-      attending: document.querySelector('input[name="attending"]:checked')?.value === 'yes' ? 'Да' : 'Нет',
-      declineReason: declineReasonInput?.value.trim() || '',
+      attending: attendingValue === 'yes' ? 'Да' : 'Нет',
+      guests: attendingValue === 'yes' ? (guestsInput?.value || '1') : '0',
+      declineReason: attendingValue === 'no' ? (declineReasonInput?.value.trim() || '') : '',
       comment: ''
     };
   }
@@ -261,20 +279,18 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Блокируем повторную отправку
     if (isSubmitting) return;
     if (!validateForm()) return;
 
     isSubmitting = true;
     
-    // Показываем спиннер, скрываем кнопку
     const submitBtn = form.querySelector('button[type="submit"]');
     const spinner = document.getElementById('submitSpinner');
     if (submitBtn) submitBtn.classList.add('hidden');
     if (spinner) spinner.classList.remove('hidden');
 
     const data = collectFormData();
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfPe4CevLozkLYYrmtlSs7nLgZ4W94Zlp6YGCLxwu3E2sQQ-KlBwORfQwnSiNppQ6w/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxp-tBNlNz5QgfeTknmEYchpvVDqgsTV-vYq4iL0NT23EWbfnveaRcWatgbHQ20jZTYlA/exec';
 
     try {
       await fetch(SCRIPT_URL, {
@@ -284,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(data)
       });
 
-      // Задержка 2 секунды, чтобы пользователь видел спиннер
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       form.classList.add('hidden');
@@ -300,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Ошибка отправки:', error);
       alert('Произошла ошибка. Проверьте интернет и попробуйте снова.');
       
-      // Возвращаем кнопку при ошибке
       if (submitBtn) submitBtn.classList.remove('hidden');
       if (spinner) spinner.classList.add('hidden');
       isSubmitting = false;
@@ -311,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (input) input.addEventListener('input', () => clearFieldErrors());
   });
   attendingRadios.forEach(r => r.addEventListener('change', () => { if (attendingError) attendingError.innerText = ''; }));
+  if (guestsInput) guestsInput.addEventListener('change', () => { if (guestsError) guestsError.innerText = ''; });
 
   // Кнопка добавления в календарь
   var calendarBtn = document.getElementById('addToCalendarBtn');
