@@ -1182,3 +1182,36 @@ footer {
   line-height: 1.5;
   margin: 0;
 }
+
+/* Предупреждение над таймингом */
+.timeline-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 0.4rem;
+  animation: alertPulse 1.5s ease-in-out infinite;
+}
+
+.timeline-alert-icon {
+  font-size: 1.4rem;
+}
+
+.timeline-alert-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #C0392B;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Красная рамка вокруг тайминга */
+.timeline-list-warning {
+  border: 3px solid #C0392B;
+  box-shadow: 0 0 0 6px rgba(192, 57, 43, 0.1), 0 8px 20px rgba(0,0,0,0.08);
+}
+
+@keyframes alertPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
